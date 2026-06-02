@@ -9,6 +9,10 @@ const traductions = {
     aveMaria: `<h1>Ave Maria</h1><br>Ave Maria, cheia de graça,<br>o Senhor é convosco.<br>Bendita sois vós entre as mulheres <br> e bendito é o fruto do vosso ventre, Jesus.<br><br>Santa Maria, Mãe de Deus,<br>rogai por nós, pecadores,<br>agora e na hora de nossa morte.<br>Amém.`,
     sinaldaCruz: `<h3>Sinal da Cruz</h3><br>Em nome do Pai do Filho e do Espírito Santo. Amém.`,
     oferecimento: `<h3>Oferecimento do Terço</h3><br>Divino Jesus, nós Vos oferecemos este terço que vamos rezar, meditando nos mistérios da Vossa Redenção. Concedei-nos, por intercessão da Virgem Maria, Mãe de Deus e nossa Mãe, as virtudes que nos são necessárias para bem rezá-lo e a graça de ganharmos as indulgências desta santa devoção.`,
+    gloria: `<h1>Glória ao Pai</h1><br>Glória ao Pai, ao Filho e ao Espírito Santo.<br>Como era no princípio, agora e sempre.<br>Amém.`,
+    fatima: `<h1>Ó meu Jesus</h1><br>Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno;<br>levai as almas todas para o Céu,<br>principalmente as que mais precisarem da Vossa misericórdia.`,
+    salveRainha: `<h1>Salve Rainha</h1><br>Salve, Rainha, Mãe de misericórdia,<br>vida, doçura e esperança nossa, salve!<br>A vós bradamos, os degredados filhos de Eva;<br>a vós suspiramos, gemendo e chorando neste vale de lágrimas.<br>Eia, pois, advogada nossa,<br>esses vossos olhos misericordiosos a nós volvei;<br>e depois deste desterro mostrai-nos Jesus,<br>bendito fruto do vosso ventre.<br>Ó clemente, ó piedosa, ó doce sempre Virgem Maria.<br><br>Rogai por nós, Santa Mãe de Deus,<br>para que sejamos dignos das promessas de Cristo. Amém.`,
+    oracaoFinal: `<h1>Oração Final</h1><br>Ó Deus, cujo Filho Unigénito, com a sua vida, morte e ressurreição,<br>nos alcançou o prémio da salvação eterna,<br>concedei-nos, Vos suplicamos,<br>que, meditando estes mistérios do Santíssimo Rosário<br>da Bem-aventurada Virgem Maria,<br>imitemos o que contêm e alcancemos o que prometem.<br>Por Cristo Senhor nosso. Amém.`,
     titreMisteres: "Mistérios",
     uniteMystere: "Mistério",
     nomsMysteres: { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
@@ -54,6 +58,10 @@ const traductions = {
     aveMaria: `<h1>Je vous salue, Marie</h1><br>Je vous salue, Marie, pleine de grâces,<br>le Seigneur est avec vous.<br>Vous êtes bénie entre toutes les femmes<br>et Jésus, le fruit de vos entrailles, est béni.<br><br>Sainte Marie, Mère de Dieu,<br>priez pour nous, pauvres pécheurs,<br>maintenant et à l'heure de notre mort.<br>Amen.`,
     sinaldaCruz: `<h3>Signe de la Croix</h3><br>Au nom du Père, du Fils et du Saint-Esprit. Amen.`,
     oferecimento: `<h3>Offrande du Chapelet</h3><br>Divin Jésus, nous Vous offrons ce chapelet que nous allons réciter en méditant les mystères de Votre Rédemption. Accordez-nous, par l'intercession de la Vierge Marie, Mère de Dieu et notre Mère, les vertus qui nous sont nécessaires pour bien le réciter et la grâce de gagner les indulgences de cette sainte dévotion.`,
+    gloria: `<h1>Gloire au Père</h1><br>Gloire au Père, et au Fils, et au Saint-Esprit.<br>Comme il était au commencement, maintenant et toujours,<br>et dans les siècles des siècles. Amen.`,
+    fatima: `<h1>Ô mon Jésus</h1><br>Ô mon Jésus, pardonnez-nous nos péchés,<br>préservez-nous du feu de l'enfer,<br>conduisez au Ciel toutes les âmes,<br>surtout celles qui ont le plus besoin de votre miséricorde.`,
+    salveRainha: `<h1>Salve Regina</h1><br>Salut, ô Reine, Mère de miséricorde,<br>notre vie, notre douceur et notre espérance, salut !<br>Enfants d'Ève, exilés, nous crions vers vous ;<br>vers vous nous soupirons, gémissant et pleurant<br>dans cette vallée de larmes.<br>Ô vous, notre avocate,<br>tournez vers nous vos regards miséricordieux,<br>et, après cet exil, montrez-nous Jésus,<br>le fruit béni de vos entrailles.<br>Ô clémente, ô miséricordieuse, ô douce Vierge Marie !<br><br>Priez pour nous, sainte Mère de Dieu,<br>afin que nous devenions dignes des promesses de Jésus-Christ. Amen.`,
+    oracaoFinal: `<h1>Prière finale</h1><br>Ô Dieu, dont le Fils unique, par sa vie, sa mort et sa résurrection,<br>nous a procuré les récompenses du salut éternel,<br>accordez-nous, nous vous en supplions,<br>qu'en méditant ces mystères du très saint Rosaire<br>de la bienheureuse Vierge Marie,<br>nous imitions ce qu'ils contiennent et obtenions ce qu'ils promettent.<br>Par le Christ notre Seigneur. Amen.`,
     titreMisteres: "Mystères",
     uniteMystere: "Mystère",
     nomsMysteres: { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
@@ -99,6 +107,10 @@ const traductions = {
     aveMaria: `<h1>Hail Mary</h1><br>Hail Mary, full of grace,<br>the Lord is with thee.<br>Blessed art thou among women<br>and blessed is the fruit of thy womb, Jesus.<br><br>Holy Mary, Mother of God,<br>pray for us sinners,<br>now and at the hour of our death.<br>Amen.`,
     sinaldaCruz: `<h3>Sign of the Cross</h3><br>In the name of the Father, and of the Son, and of the Holy Spirit. Amen.`,
     oferecimento: `<h3>Offering of the Rosary</h3><br>Divine Jesus, we offer You this Rosary which we are about to pray, meditating on the mysteries of Your Redemption. Grant us, through the intercession of the Virgin Mary, Mother of God and our Mother, the virtues we need to pray it well, and the grace of gaining the indulgences of this holy devotion.`,
+    gloria: `<h1>Glory Be</h1><br>Glory be to the Father, and to the Son, and to the Holy Spirit.<br>As it was in the beginning, is now, and ever shall be,<br>world without end. Amen.`,
+    fatima: `<h1>O My Jesus</h1><br>O my Jesus, forgive us our sins,<br>save us from the fires of hell,<br>lead all souls to Heaven,<br>especially those in most need of Thy mercy.`,
+    salveRainha: `<h1>Hail, Holy Queen</h1><br>Hail, holy Queen, Mother of Mercy,<br>our life, our sweetness and our hope.<br>To thee do we cry, poor banished children of Eve.<br>To thee do we send up our sighs,<br>mourning and weeping in this valley of tears.<br>Turn then, most gracious Advocate,<br>thine eyes of mercy toward us,<br>and after this our exile<br>show unto us the blessed fruit of thy womb, Jesus.<br>O clement, O loving, O sweet Virgin Mary.<br><br>Pray for us, O holy Mother of God,<br>that we may be made worthy of the promises of Christ. Amen.`,
+    oracaoFinal: `<h1>Closing Prayer</h1><br>O God, whose only-begotten Son, by His life, death and resurrection,<br>has purchased for us the rewards of eternal life:<br>grant, we beseech Thee,<br>that, meditating upon these mysteries<br>of the most holy Rosary of the Blessed Virgin Mary,<br>we may imitate what they contain and obtain what they promise.<br>Through Christ our Lord. Amen.`,
     titreMisteres: "Mysteries",
     uniteMystere: "Mystery",
     nomsMysteres: { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
@@ -144,6 +156,10 @@ const traductions = {
     aveMaria: `<h1>Gegrüßet seist du, Maria</h1><br>Gegrüßet seist du, Maria, voll der Gnade,<br>der Herr ist mit dir.<br>Du bist gebenedeit unter den Frauen<br>und gebenedeit ist die Frucht deines Leibes, Jesus.<br><br>Heilige Maria, Mutter Gottes,<br>bitte für uns Sünder,<br>jetzt und in der Stunde unseres Todes.<br>Amen.`,
     sinaldaCruz: `<h3>Kreuzzeichen</h3><br>Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen.`,
     oferecimento: `<h3>Darbringung des Rosenkranzes</h3><br>Göttlicher Jesus, wir bieten Dir diesen Rosenkranz an, den wir beten wollen, indem wir über die Geheimnisse Deiner Erlösung nachdenken. Verleihe uns durch die Fürsprache der Jungfrau Maria, Mutter Gottes und unserer Mutter, die Tugenden, die wir brauchen, um ihn gut zu beten, und die Gnade, die Ablässe dieser heiligen Andacht zu gewinnen.`,
+    gloria: `<h1>Ehre sei dem Vater</h1><br>Ehre sei dem Vater und dem Sohn und dem Heiligen Geist,<br>wie im Anfang, so auch jetzt und alle Zeit<br>und in Ewigkeit. Amen.`,
+    fatima: `<h1>O mein Jesus</h1><br>O mein Jesus, verzeih uns unsere Sünden,<br>bewahre uns vor dem Feuer der Hölle,<br>führe alle Seelen in den Himmel,<br>besonders jene, die deiner Barmherzigkeit am meisten bedürfen.`,
+    salveRainha: `<h1>Salve Regina</h1><br>Sei gegrüßt, o Königin, Mutter der Barmherzigkeit,<br>unser Leben, unsere Wonne und unsere Hoffnung, sei gegrüßt!<br>Zu dir rufen wir verbannte Kinder Evas,<br>zu dir seufzen wir trauernd und weinend in diesem Tal der Tränen.<br>Wohlan denn, unsere Fürsprecherin,<br>wende deine barmherzigen Augen uns zu<br>und nach diesem Elend zeige uns Jesus,<br>die gebenedeite Frucht deines Leibes.<br>O gütige, o milde, o süße Jungfrau Maria.<br><br>Bitte für uns, o heilige Gottesmutter,<br>auf dass wir würdig werden der Verheißungen Christi. Amen.`,
+    oracaoFinal: `<h1>Schlussgebet</h1><br>O Gott, dein eingeborener Sohn hat uns durch sein Leben,<br>seinen Tod und seine Auferstehung<br>die Schätze des ewigen Heiles erworben.<br>Wir bitten dich: Lass uns, die wir im heiligen Rosenkranz<br>der seligen Jungfrau Maria diese Geheimnisse betrachten,<br>ihren Inhalt nachahmen und erlangen, was sie verheißen.<br>Durch Christus, unseren Herrn. Amen.`,
     titreMisteres: "Geheimnisse",
     uniteMystere: "Geheimnis",
     nomsMysteres: { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
@@ -250,12 +266,21 @@ function changerMystere(type) {
     ...Array(10).fill(aveMaria),
   ];
 
+  const annonce = (i) =>
+    `<h1>${t.ordinals[i]} ${t.uniteMystere} ${t.nomsMysteres[type].toUpperCase()}</h1><br>${m[i]}`;
+
+  // Pages intercalées (ne consomment pas de perle) :
+  //  - clé 5  : Glória de l'ouverture (après les 3 Ave) puis 1er mystère
+  //  - clés 16/27/38/49 : Glória + Ó meu Jesus (clôture de la dizaine précédente)
+  //                       puis annonce du mystère suivant
+  //  - clé 60 : clôture du terço après la 5e dizaine (index virtuel, pas de perle)
   sousTextes = {
-    5:  [`<h1>${t.ordinals[0]} ${t.uniteMystere} ${t.nomsMysteres[type].toUpperCase()}</h1><br>${m[0]}`, paiNosso],
-    16: [`<h1>${t.ordinals[1]} ${t.uniteMystere} ${t.nomsMysteres[type].toUpperCase()}</h1><br>${m[1]}`, paiNosso],
-    27: [`<h1>${t.ordinals[2]} ${t.uniteMystere} ${t.nomsMysteres[type].toUpperCase()}</h1><br>${m[2]}`, paiNosso],
-    38: [`<h1>${t.ordinals[3]} ${t.uniteMystere} ${t.nomsMysteres[type].toUpperCase()}</h1><br>${m[3]}`, paiNosso],
-    49: [`<h1>${t.ordinals[4]} ${t.uniteMystere} ${t.nomsMysteres[type].toUpperCase()}</h1><br>${m[4]}`, paiNosso],
+    5:  [t.gloria, annonce(0), paiNosso],
+    16: [t.gloria, t.fatima, annonce(1), paiNosso],
+    27: [t.gloria, t.fatima, annonce(2), paiNosso],
+    38: [t.gloria, t.fatima, annonce(3), paiNosso],
+    49: [t.gloria, t.fatima, annonce(4), paiNosso],
+    60: [t.gloria, t.fatima, t.salveRainha, t.oracaoFinal, t.sinaldaCruz],
   };
 
   currentIndex = -1;
@@ -366,6 +391,14 @@ function compterAveMaria(index) {
   return count;
 }
 
+// Reste-t-il une page après la position courante ?
+// (perle suivante, ou pages intercalées — y compris la clôture à l'index 60)
+function aProchainePage() {
+  const next = currentIndex + 1;
+  if (sousTextes[next]) return true;
+  return next <= prières.length - 1;
+}
+
 // --- AVANCER / RECULER ---
 function avancePriere(depuisTTS = false) {
   const nextIndex = currentIndex + 1;
@@ -395,7 +428,9 @@ function avancePriere(depuisTTS = false) {
     let texte = prières[currentIndex] || "";
     if (prières[currentIndex] === aveMaria) {
       const count = compterAveMaria(currentIndex);
-      texte = texte.replace(/(<h1>)(.*?)(<\/h1>)/, `$1$2 (${count}/10)$3`);
+      // 3 Ave Maria d'ouverture (index < 5) vs dizaines de 10
+      const total = currentIndex < 5 ? 3 : 10;
+      texte = texte.replace(/(<h1>)(.*?)(<\/h1>)/, `$1$2 (${count}/${total})$3`);
     }
     currentPriere.innerHTML = texte;
     history.push({ type: "priere", index: currentIndex });
@@ -404,8 +439,7 @@ function avancePriere(depuisTTS = false) {
   updateRosaire();
   if (!depuisTTS) tts.stopper();
   fermerModal();
-  document.getElementById("avance").disabled =
-    currentIndex >= prières.length - 1;
+  document.getElementById("avance").disabled = !aProchainePage();
 }
 
 function reculePriere() {
@@ -441,8 +475,7 @@ function reculePriere() {
   tts.stopper();
   // Fermer le modal si ouvert (prière précédente)
   fermerModal();
-  document.getElementById("avance").disabled =
-    currentIndex >= prières.length - 1;
+  document.getElementById("avance").disabled = !aProchainePage();
 }
 
 // --- MISE À JOUR DES PERLES ET IMAGE ---
