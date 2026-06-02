@@ -45,6 +45,9 @@
 
         <!-- BOUTON LECTURE AUDIO + VITESSE -->
         <div id="tts-controls">
+          <button id="btn-musique" aria-label="Musique grégorienne" title="Musique grégorienne">
+            <span id="musique-icon">🎵</span>
+          </button>
           <button id="btn-tts" aria-label="Lire la prière" title="Lire la prière à voix haute">
             <span id="tts-icon">🔊</span>
             <span id="tts-label">Écouter</span>
@@ -59,7 +62,8 @@
         <div id="chapelet">
           <div id="extremite"></div>
           <div id="cercle">
-            <img id="image-centre" src="./img/jesus.jpg" alt="Image du centre du chapelet">
+            <img id="image-centre" src="./img/jesus.jpg" alt="Image du centre du chapelet"
+            onerror="this.onerror=null; this.src='./img/jesus.jpg';">
           </div>
         </div>
 
@@ -111,6 +115,8 @@
 
   <!-- HINT SWIPE -->
   <div id="swipe-hint">← Glisser pour naviguer →</div>
+
+  <audio id="audio-gregorien" preload="none"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"

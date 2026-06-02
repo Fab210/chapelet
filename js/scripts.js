@@ -222,6 +222,7 @@ let typeMystere = "joyeux";
 let prières = [];
 let sousTextes = {};
 let currentIndex = -1;
+let currentImageSrc = null;
 const sousIndexes = {};
 const perlesAtteintes = [];
 const history = [];
@@ -258,6 +259,7 @@ function changerMystere(type) {
   };
 
   currentIndex = -1;
+  currentImageSrc = null;
 
   for (let key in sousIndexes) delete sousIndexes[key];
 
@@ -463,8 +465,6 @@ function updateRosaire() {
 
   if (dernierMystereIndex >= 0) {
     changerImageMystere(dernierMystereIndex);
-  } else {
-    changerImageMystere(0);
   }
 }
 
@@ -483,7 +483,8 @@ function changerImageMystere(numMystere) {
   const images = imagesMysteres[typeMystere];
   if (!images || numMystere >= images.length) return;
   const newSrc = images[numMystere];
-  // Toujours récupérer l'élément courant (peut avoir été recréé par regenererPerles)
+  if (newSrc === currentImageSrc) return;
+  currentImageSrc = newSrc;
   const img = document.getElementById("image-centre");
   if (!img) return;
   img.classList.add("fade-out");
@@ -648,6 +649,8 @@ function regenererPerles() {
   const img = document.createElement("img");
   img.id = "image-centre";
   img.alt = "Image du centre du chapelet";
+  // Repli si le fichier de mystère est absent : on retombe sur l'image par défaut
+  img.onerror = function () { this.onerror = null; this.src = "./img/jesus.jpg"; };
   // imageRosaire pointe encore sur l'ancien élément supprimé, on récupère son src
   img.src = imageRosaire ? imageRosaire.src : "./img/jesus.jpg";
   img.style.transition = "opacity 0.5s ease-in-out";
@@ -764,11 +767,12 @@ const tts = {
     utterance.volume = tts.volume;
 
     utterance.onboundary = (e) => { tts._charIndex = offset + e.charIndex; };
-    utterance.onstart    = () => { tts.actif = true;  tts._mettreAJourBouton(); };
-    utterance.onerror    = () => { tts.actif = false; tts._mettreAJourBouton(); };
+    utterance.onstart    = () => { tts.actif = true;  tts._mettreAJourBouton(); musique.ducker(); };
+    utterance.onerror    = () => { tts.actif = false; tts._mettreAJourBouton(); musique.restaurerVolume(); };
     utterance.onend      = () => {
       tts.actif = false;
       tts._mettreAJourBouton();
+      musique.restaurerVolume();
       if (!tts.autoPlay) return;
       const btnAvance = document.getElementById("avance");
       if (!btnAvance || btnAvance.disabled) {
@@ -804,10 +808,12 @@ const tts = {
       speechSynthesis.pause();
       tts.actif = false;
       tts._enPause = true;
+      musique.restaurerVolume();
     } else if (tts._enPause) {
       speechSynthesis.resume();
       tts.actif = true;
       tts._enPause = false;
+      musique.ducker();
     } else {
       speechSynthesis.cancel();
       tts.autoPlay = true;
@@ -824,6 +830,7 @@ const tts = {
     tts.autoPlay = false;
     tts._enPause = false;
     tts._mettreAJourBouton();
+    musique.restaurerVolume();
   },
 
   _mettreAJourBouton() {
@@ -832,6 +839,91 @@ const tts = {
     const enLecture = speechSynthesis.speaking && !speechSynthesis.paused;
     btn.querySelector("#tts-icon").textContent = enLecture ? "⏸" : "🔊";
     btn.setAttribute("aria-label", enLecture ? "Mettre en pause" : "Lire la prière");
+  },
+};
+
+// ============================================================
+// MUSIQUE GRÉGORIENNE
+// ============================================================
+
+const pistesGregoriennes = [
+  "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3b/De_profundis.ogg/De_profundis.ogg.mp3",
+  "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/90/Alma_Redemptoris_Mater.ogg/Alma_Redemptoris_Mater.ogg.mp3",
+  "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/10/Loquetur_Dominus.ogg/Loquetur_Dominus.ogg.mp3",
+  "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1d/Kyrie_55%2C_Vatican_ad_lib._VI%2C_Cambrai.ogg/Kyrie_55%2C_Vatican_ad_lib._VI%2C_Cambrai.ogg.mp3",
+];
+
+const musique = {
+  audio: null,
+  actif: false,
+  indexPiste: 0,
+  _erreurs: 0,
+  _srcInitialisee: false,
+  volumeNormal: 0.3,
+  volumeDucked: 0.07,
+
+  init() {
+    const el = document.getElementById("audio-gregorien");
+    if (!el) return;
+    this.audio = el;
+    this.audio.volume = this.volumeNormal;
+
+    this.audio.addEventListener("ended", () => {
+      this._erreurs = 0;
+      this.indexPiste = (this.indexPiste + 1) % pistesGregoriennes.length;
+      this.audio.src = pistesGregoriennes[this.indexPiste];
+      this._srcInitialisee = true;
+      if (this.actif) this.audio.play().catch(() => {});
+    });
+
+    this.audio.addEventListener("error", () => {
+      if (!this.actif) return;
+      this._erreurs++;
+      if (this._erreurs >= pistesGregoriennes.length) {
+        this.actif = false;
+        this._erreurs = 0;
+        this._mettreAJourBouton();
+        return;
+      }
+      this.indexPiste = (this.indexPiste + 1) % pistesGregoriennes.length;
+      this.audio.src = pistesGregoriennes[this.indexPiste];
+      this._srcInitialisee = true;
+      this.audio.play().catch(() => {});
+    });
+  },
+
+  toggle() {
+    if (!this.audio) return;
+    if (this.actif) {
+      this.audio.pause();
+      this.actif = false;
+    } else {
+      if (!this._srcInitialisee) {
+        this.audio.src = pistesGregoriennes[this.indexPiste];
+        this._srcInitialisee = true;
+      }
+      this.audio.play().catch(() => {});
+      this.actif = true;
+    }
+    this._mettreAJourBouton();
+  },
+
+  ducker() {
+    if (this.audio && this.actif) this.audio.volume = this.volumeDucked;
+  },
+
+  restaurerVolume() {
+    if (this.audio && this.actif) this.audio.volume = this.volumeNormal;
+  },
+
+  _mettreAJourBouton() {
+    const btn = document.getElementById("btn-musique");
+    if (!btn) return;
+    const icon = btn.querySelector("#musique-icon");
+    if (icon) icon.textContent = this.actif ? "🎶" : "🎵";
+    btn.classList.toggle("en-lecture", this.actif);
+    btn.setAttribute("aria-label", this.actif ? "Arrêter la musique" : "Musique grégorienne");
+    btn.setAttribute("title", this.actif ? "Arrêter la musique" : "Musique grégorienne");
   },
 };
 
@@ -859,6 +951,11 @@ document.getElementById("priere-bandeau").addEventListener("click", (e) => {
   if (e.target.closest("#btn-modal-priere")) return;
   toggleModal();
 });
+
+// Musique grégorienne
+musique.init();
+const btnMusique = document.getElementById("btn-musique");
+if (btnMusique) btnMusique.addEventListener("click", () => musique.toggle());
 
 // Bouton TTS
 tts.init();
