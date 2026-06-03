@@ -17,6 +17,7 @@ const traductions = {
     uniteMystere: "Mistério",
     nomsMysteres: { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     boutons:       { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
+    nav:           { recule: "Voltar", avance: "Avançar" },
     ordinals: ["1º", "2º", "3º", "4º", "5º"],
     mysteres: {
   joyeux: [
@@ -66,6 +67,7 @@ const traductions = {
     uniteMystere: "Mystère",
     nomsMysteres: { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     boutons:       { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
+    nav:           { recule: "Reculer", avance: "Avancer" },
     ordinals: ["1er", "2e", "3e", "4e", "5e"],
     mysteres: {
       joyeux: [
@@ -115,6 +117,7 @@ const traductions = {
     uniteMystere: "Mystery",
     nomsMysteres: { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     boutons:       { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
+    nav:           { recule: "Back", avance: "Next" },
     ordinals: ["1st", "2nd", "3rd", "4th", "5th"],
     mysteres: {
       joyeux: [
@@ -164,6 +167,7 @@ const traductions = {
     uniteMystere: "Geheimnis",
     nomsMysteres: { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     boutons:       { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
+    nav:           { recule: "Zurück", avance: "Weiter" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -311,6 +315,9 @@ function appliquerLangue(code) {
   document.getElementById("btn-lumineux").textContent  = t.boutons.lumineux;
   document.getElementById("btn-douloureux").textContent = t.boutons.douloureux;
   document.getElementById("btn-glorieux").textContent  = t.boutons.glorieux;
+
+  document.getElementById("recule").innerHTML = `<span>&larr;</span> ${t.nav.recule}`;
+  document.getElementById("avance").innerHTML = `${t.nav.avance} <span>&rarr;</span>`;
 
   const sel = document.getElementById("select-langue");
   if (sel) sel.value = code;

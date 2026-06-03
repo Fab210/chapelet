@@ -10,7 +10,12 @@
    ============================================================ */
 body {
   font-family: 'Merriweather', serif;
-  background: #f5eddc;
+  /* Fond chaud et accueillant : halo lumineux central qui se fond
+     vers des bords plus profonds, comme une lumière de bougie. */
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 28%, #fbf4e4 0%, #f3e7cf 45%, #ead9bb 100%),
+    #ead9bb;
+  background-attachment: fixed;
   color: #3a2d1f;
   margin: 0;
   padding: 0;
@@ -310,13 +315,13 @@ h1, h3 {
 
 button {
   background: #5c4026;
-  color: white;
+  color: #fdf6ea;
   border: none;
   padding: 14px 28px;
   font-size: clamp(14px, 3vw, 16px);
-  border-radius: 20px;
+  border-radius: 22px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -325,9 +330,37 @@ button {
 
 button:hover { background: #7b552f; }
 
+/* Boutons pleins (navigation + fermeture modal) : dégradé chaleureux,
+   ombre douce et léger relief au survol. */
+#navigation button,
+#btn-modal-fermer {
+  background: linear-gradient(145deg, #6b4b2e, #523722);
+  box-shadow: 0 3px 10px rgba(60, 40, 20, 0.22), inset 0 1px 0 rgba(255, 240, 215, 0.15);
+}
+
+#navigation button:hover,
+#btn-modal-fermer:hover {
+  background: linear-gradient(145deg, #7d5836, #634326);
+  box-shadow: 0 5px 16px rgba(60, 40, 20, 0.28), inset 0 1px 0 rgba(255, 240, 215, 0.2);
+  transform: translateY(-1px);
+}
+
+#navigation button:active,
+#btn-modal-fermer:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(60, 40, 20, 0.2);
+}
+
 #avance:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Focus clavier discret et chaleureux (accessibilité) */
+button:focus-visible,
+#select-langue:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.75);
+  outline-offset: 2px;
 }
 
 /* ============================================================
@@ -455,8 +488,8 @@ button:hover { background: #7b552f; }
    FEEDBACK VISUEL NAVIGATION CLAVIER / SWIPE
    ============================================================ */
 @keyframes btn-flash {
-  0%   { background: #7b552f; transform: scale(1.05); }
-  100% { background: #5c4026; transform: scale(1); }
+  0%   { background: linear-gradient(145deg, #8a6038, #6b4a2a); transform: scale(1.05); }
+  100% { background: linear-gradient(145deg, #6b4b2e, #523722); transform: scale(1); }
 }
 
 button.btn-flash {
@@ -541,9 +574,6 @@ button.btn-flash {
     z-index: 20;
     display: flex;
     gap: 10px;
-    background: rgba(249, 246, 235, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     padding: 10px 16px;
     margin-top: 0;
   }
@@ -699,9 +729,6 @@ button.btn-flash {
     z-index: 20;
     justify-content: center;
     gap: 20px;
-    background: rgba(249, 246, 235, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     padding: 10px 20px;
     margin-top: 0;
   }
@@ -863,22 +890,9 @@ button.btn-flash {
     border-bottom: 1px solid rgba(92, 64, 38, 0.10);
     z-index: 9;
   }
-
-  #langue-select-wrapper {
-    top: 0;
-    left: 16px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    z-index: 11;
-  }
-
-  #tts-controls {
-    top: 0;
-    right: 16px;
-    height: 44px;
-    z-index: 11;
-  }
+  /* Le positionnement des contrôles dans la barre est ré-affirmé en fin
+     de fichier (après les règles de base #tts-controls / #langue-select-wrapper)
+     pour gagner la cascade — sinon le top:14px mobile l'emporterait ici. */
 }
 
 /* ============================================================
@@ -1028,6 +1042,18 @@ button.btn-flash {
   z-index: 10;
 }
 
+/* Barre du haut atténuée : s'efface visuellement, réapparaît au survol. */
+#langue-select-wrapper,
+#tts-controls {
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+#langue-select-wrapper:hover,
+#tts-controls:hover {
+  opacity: 1;
+}
+
 #select-langue {
   background: transparent;
   border: 1px solid rgba(92, 64, 38, 0.35);
@@ -1092,5 +1118,22 @@ button.btn-flash {
     border-radius: 50%;
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+/* ============================================================
+   POSITIONNEMENT DES CONTRÔLES DANS LA BARRE DU HAUT (desktop ≥1025px)
+   Placé en fin de fichier pour gagner la cascade sur les règles de
+   base #tts-controls / #langue-select-wrapper (qui fixent top:14px
+   pour le mobile et sont déclarées plus haut dans ce fichier).
+   ============================================================ */
+@media (min-width: 1025px) {
+  #langue-select-wrapper,
+  #tts-controls {
+    top: 0;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    z-index: 11;
   }
 }
