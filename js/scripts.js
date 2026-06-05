@@ -972,11 +972,12 @@ const tts = {
 // MUSIQUE GRÉGORIENNE
 // ============================================================
 
+// Pistes hébergées localement (domaine public, Wikimedia Commons) — voir audio/CREDITS.txt
 const pistesGregoriennes = [
-  "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3b/De_profundis.ogg/De_profundis.ogg.mp3",
-  "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/90/Alma_Redemptoris_Mater.ogg/Alma_Redemptoris_Mater.ogg.mp3",
-  "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/10/Loquetur_Dominus.ogg/Loquetur_Dominus.ogg.mp3",
-  "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1d/Kyrie_55%2C_Vatican_ad_lib._VI%2C_Cambrai.ogg/Kyrie_55%2C_Vatican_ad_lib._VI%2C_Cambrai.ogg.mp3",
+  "./audio/de_profundis.mp3",
+  "./audio/alma_redemptoris_mater.mp3",
+  "./audio/loquetur_dominus.mp3",
+  "./audio/kyrie_cambrai.mp3",
 ];
 
 const musique = {
