@@ -351,7 +351,8 @@ button:hover { background: #7b552f; }
   box-shadow: 0 2px 6px rgba(60, 40, 20, 0.2);
 }
 
-#avance:disabled {
+#avance:disabled,
+#recule:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -762,6 +763,11 @@ button.btn-flash {
    TABLETTE — 768px à 1024px (chapelet centré, bandeau + modal actifs)
    ============================================================ */
 @media (min-width: 768px) and (max-width: 1024px) {
+
+  /* Chapelet agrandi : doit rester synchronisé avec generatePerles() (JS) */
+  :root {
+    --chap-size: min(600px, 85vw, calc((100vh - 320px) / 1.45));
+  }
 
   body {
     display: flex;

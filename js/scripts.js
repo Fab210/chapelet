@@ -18,6 +18,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     boutons:       { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     nav:           { recule: "Voltar", avance: "Avançar" },
+    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido" },
     ordinals: ["1º", "2º", "3º", "4º", "5º"],
     mysteres: {
   joyeux: [
@@ -68,6 +69,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     boutons:       { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     nav:           { recule: "Reculer", avance: "Avancer" },
+    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer" },
     ordinals: ["1er", "2e", "3e", "4e", "5e"],
     mysteres: {
       joyeux: [
@@ -118,6 +120,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     boutons:       { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     nav:           { recule: "Back", avance: "Next" },
+    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster" },
     ordinals: ["1st", "2nd", "3rd", "4th", "5th"],
     mysteres: {
       joyeux: [
@@ -168,6 +171,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     boutons:       { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     nav:           { recule: "Zurück", avance: "Weiter" },
+    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -324,6 +328,31 @@ function appliquerLangue(code) {
   document.getElementById("recule").innerHTML = `<span>&larr;</span> ${t.nav.recule}`;
   document.getElementById("avance").innerHTML = `${t.nav.avance} <span>&rarr;</span>`;
 
+  // Libellés d'interface (chrome) traduits
+  const ui = t.ui;
+  const set = (id, attrs) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    for (const k in attrs) {
+      if (k === "text") el.textContent = attrs[k];
+      else el.setAttribute(k, attrs[k]);
+    }
+  };
+  set("tts-label", { text: ui.ecouter });
+  set("btn-speed-down", { "aria-label": ui.ralentir, title: ui.ralentir });
+  set("btn-speed-up", { "aria-label": ui.accelerer, title: ui.accelerer });
+  set("btn-modal-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
+  const fermerBtn = document.getElementById("btn-modal-fermer");
+  if (fermerBtn) {
+    fermerBtn.textContent = `✕ ${ui.fermer}`;
+    fermerBtn.setAttribute("aria-label", ui.fermer);
+  }
+  tts._mettreAJourBouton();
+  musique._mettreAJourBouton();
+
+  // Langue du document (accessibilité / synthèse vocale)
+  document.documentElement.lang = code;
+
   const sel = document.getElementById("select-langue");
   if (sel) sel.value = code;
 
@@ -341,10 +370,19 @@ function generatePerles() {
   const extremiteContainer = document.getElementById("extremite");
   const cercleContainer = document.getElementById("cercle");
 
-  // Taille réelle du chapelet au moment du rendu
-  const chapSize = window.innerWidth >= 768
-    ? Math.min(500, window.innerWidth * 0.9, (window.innerHeight - 260) / 1.45)
-    : Math.min(500, window.innerWidth * 0.9);
+  // Taille réelle du chapelet au moment du rendu.
+  // DOIT rester synchronisé avec --chap-size dans styles.css (sinon les
+  // perles, positionnées en JS, se décalent du conteneur dimensionné en CSS).
+  let chapSize;
+  if (window.innerWidth >= 1025) {
+    // Desktop « livre » deux colonnes : chapelet dans la colonne droite
+    chapSize = Math.min(500, window.innerWidth * 0.9, (window.innerHeight - 260) / 1.45);
+  } else if (window.innerWidth >= 768) {
+    // Tablette en colonne unique : plus de place, on agrandit
+    chapSize = Math.min(600, window.innerWidth * 0.85, (window.innerHeight - 320) / 1.45);
+  } else {
+    chapSize = Math.min(500, window.innerWidth * 0.9);
+  }
   const scale = chapSize / 500; // facteur par rapport à la base 500px
 
   // Perles de la chaîne verticale — positions proportionnelles
@@ -492,6 +530,14 @@ function reculePriere() {
 
 // --- MISE À JOUR DES PERLES ET IMAGE ---
 function updateRosaire() {
+  // État des boutons de navigation (recalculé à chaque mise à jour, y compris
+  // après un changement de mystère/langue — sinon « Avancer » resterait
+  // désactivé une fois le chapelet terminé et on ne pourrait pas recommencer).
+  const recule = document.getElementById("recule");
+  if (recule) recule.disabled = history.length === 0;
+  const avance = document.getElementById("avance");
+  if (avance) avance.disabled = !aProchainePage();
+
   perlesAtteintes.length = 0;
   history.forEach((h) => {
     if (!perlesAtteintes.includes(h.index)) perlesAtteintes.push(h.index);
@@ -584,10 +630,21 @@ function mettreAJourBandeau() {
   contenuModal.innerHTML = html;
 }
 
+let _modalHideTimer = null;
+
+// Icône « livre » en SVG (rendu garanti, contrairement à l'emoji 📖 absent
+// de certaines polices). Croix de fermeture en caractère ✕ (universel).
+const ICON_LIVRE = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.5 5.2 8.5 4.5 6 4.5c-1 0-2 .1-3 .4v13c1-.3 2-.4 3-.4 2.5 0 4.5.7 6 2 1.5-1.3 3.5-2 6-2 1 0 2 .1 3 .4v-13c-1-.3-2-.4-3-.4-2.5 0-4.5.7-6 2z"/><path d="M12 6.5v13"/></svg>`;
+const ICON_FERMER = "✕";
+
 function ouvrirModal() {
   const modal = document.getElementById("modal-priere");
   const overlay = document.getElementById("modal-overlay");
   if (!modal || !overlay) return;
+
+  // Annule un masquage en attente (ex. fermerModal déclenché par une
+  // navigation < 360 ms avant) qui sinon cacherait le modal qu'on ouvre.
+  clearTimeout(_modalHideTimer);
 
   // Mettre à jour le contenu au cas où
   mettreAJourBandeau();
@@ -598,7 +655,7 @@ function ouvrirModal() {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => modal.classList.add("open"));
   });
-  document.getElementById("btn-modal-icon").textContent = "✕";
+  document.getElementById("btn-modal-icon").innerHTML = ICON_FERMER;
 }
 
 function fermerModal() {
@@ -607,9 +664,11 @@ function fermerModal() {
   if (!modal || !overlay) return;
 
   modal.classList.remove("open");
-  document.getElementById("btn-modal-icon").textContent = "📖";
-  // Masquer après la transition
-  setTimeout(() => {
+  document.getElementById("btn-modal-icon").innerHTML = ICON_LIVRE;
+  // Masquer après la transition (timer mémorisé pour pouvoir l'annuler
+  // si le modal est rouvert avant la fin de la transition).
+  clearTimeout(_modalHideTimer);
+  _modalHideTimer = setTimeout(() => {
     modal.style.display = "none";
     overlay.style.display = "none";
   }, 360);
@@ -881,9 +940,11 @@ const tts = {
   _mettreAJourBouton() {
     const btn = document.getElementById("btn-tts");
     if (!btn) return;
-    const enLecture = speechSynthesis.speaking && !speechSynthesis.paused;
-    btn.querySelector("#tts-icon").textContent = enLecture ? "⏸" : "🔊";
-    btn.setAttribute("aria-label", enLecture ? "Mettre en pause" : "Lire la prière");
+    const ui = traductions[langueActuelle].ui;
+    const enLecture = !!window.speechSynthesis && speechSynthesis.speaking && !speechSynthesis.paused;
+    const iconEl = btn.querySelector("#tts-icon");
+    if (iconEl) iconEl.textContent = enLecture ? "⏸" : "🔊";
+    btn.setAttribute("aria-label", enLecture ? ui.pause : ui.lire);
   },
 };
 
@@ -967,8 +1028,9 @@ const musique = {
     const icon = btn.querySelector("#musique-icon");
     if (icon) icon.textContent = this.actif ? "🎶" : "🎵";
     btn.classList.toggle("en-lecture", this.actif);
-    btn.setAttribute("aria-label", this.actif ? "Arrêter la musique" : "Musique grégorienne");
-    btn.setAttribute("title", this.actif ? "Arrêter la musique" : "Musique grégorienne");
+    const ui = traductions[langueActuelle].ui;
+    btn.setAttribute("aria-label", this.actif ? ui.musiqueOn : ui.musiqueOff);
+    btn.setAttribute("title", this.actif ? ui.musiqueOn : ui.musiqueOff);
   },
 };
 
