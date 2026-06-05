@@ -208,8 +208,8 @@ let paiNosso, aveMaria, basePrières;
 // --- IMAGES DES MYSTÈRES ---
 const imagesMysteres = {
   joyeux: [
-    "./img/A Anunciação do Anjo a Maria.jpg",
-    "./img/A Visitacao de Maria a Isabel.jpg",
+    "./img/joyeux1.jpg",
+    "./img/joyeux2.jpg",
     "./img/joyeux3.jpg",
     "./img/joyeux4.jpg",
     "./img/joyeux5.jpg",
@@ -255,6 +255,11 @@ function changerMystere(type) {
   typeMystere = type;
   const t = traductions[langueActuelle];
   const m = t.mysteres[type];
+
+  // Met en évidence le bouton du mystère sélectionné
+  document.querySelectorAll("#mysteres-buttons button").forEach((b) =>
+    b.classList.toggle("active", b.id === `btn-${type}`)
+  );
 
   prières = [
     ...basePrières,

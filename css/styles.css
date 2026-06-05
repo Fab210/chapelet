@@ -181,7 +181,7 @@ h1, h3 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.perle.notre-pere-active {
+.perle.notre-pere.active {
   transform: scale(1.2);
   box-shadow: 0 0 15px 6px rgba(255,215,0,0.5);
 }
