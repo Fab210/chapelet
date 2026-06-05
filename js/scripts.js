@@ -18,7 +18,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     boutons:       { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     nav:           { recule: "Voltar", avance: "Avançar" },
-    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido", swipeHint: "← Deslize para navegar →", clavierHint: "Teclas ← → ou Espaço para navegar" },
+    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido", swipeHint: "← Deslize para navegar →", clavierHint: "Teclas ← → ou Espaço para navegar", titreApp: "Santo Rosário" },
     ordinals: ["1º", "2º", "3º", "4º", "5º"],
     mysteres: {
   joyeux: [
@@ -69,7 +69,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     boutons:       { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     nav:           { recule: "Reculer", avance: "Avancer" },
-    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer", swipeHint: "← Glisser pour naviguer →", clavierHint: "Touches ← → ou Espace pour naviguer" },
+    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer", swipeHint: "← Glisser pour naviguer →", clavierHint: "Touches ← → ou Espace pour naviguer", titreApp: "Saint Rosaire" },
     ordinals: ["1er", "2e", "3e", "4e", "5e"],
     mysteres: {
       joyeux: [
@@ -120,7 +120,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     boutons:       { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     nav:           { recule: "Back", avance: "Next" },
-    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster", swipeHint: "← Swipe to navigate →", clavierHint: "Use ← → or Space to navigate" },
+    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster", swipeHint: "← Swipe to navigate →", clavierHint: "Use ← → or Space to navigate", titreApp: "Holy Rosary" },
     ordinals: ["1st", "2nd", "3rd", "4th", "5th"],
     mysteres: {
       joyeux: [
@@ -171,7 +171,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     boutons:       { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     nav:           { recule: "Zurück", avance: "Weiter" },
-    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller", swipeHint: "← Wischen zum Navigieren →", clavierHint: "Tasten ← → oder Leertaste zum Navigieren" },
+    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller", swipeHint: "← Wischen zum Navigieren →", clavierHint: "Tasten ← → oder Leertaste zum Navigieren", titreApp: "Heiliger Rosenkranz" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -361,6 +361,9 @@ function appliquerLangue(code) {
   }
   tts._mettreAJourBouton();
   musique._mettreAJourBouton();
+
+  const topTitre = document.querySelector("#top-titre span");
+  if (topTitre) topTitre.textContent = ui.titreApp;
 
   const swipeHint = document.getElementById("swipe-hint");
   if (swipeHint) swipeHint.textContent = ui.swipeHint;
