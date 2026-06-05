@@ -18,7 +18,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     boutons:       { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     nav:           { recule: "Voltar", avance: "Avançar" },
-    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido" },
+    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido", swipeHint: "← Deslize para navegar →", clavierHint: "Teclas ← → ou Espaço para navegar" },
     ordinals: ["1º", "2º", "3º", "4º", "5º"],
     mysteres: {
   joyeux: [
@@ -69,7 +69,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     boutons:       { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     nav:           { recule: "Reculer", avance: "Avancer" },
-    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer" },
+    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer", swipeHint: "← Glisser pour naviguer →", clavierHint: "Touches ← → ou Espace pour naviguer" },
     ordinals: ["1er", "2e", "3e", "4e", "5e"],
     mysteres: {
       joyeux: [
@@ -120,7 +120,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     boutons:       { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     nav:           { recule: "Back", avance: "Next" },
-    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster" },
+    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster", swipeHint: "← Swipe to navigate →", clavierHint: "Use ← → or Space to navigate" },
     ordinals: ["1st", "2nd", "3rd", "4th", "5th"],
     mysteres: {
       joyeux: [
@@ -171,7 +171,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     boutons:       { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     nav:           { recule: "Zurück", avance: "Weiter" },
-    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller" },
+    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller", swipeHint: "← Wischen zum Navigieren →", clavierHint: "Tasten ← → oder Leertaste zum Navigieren" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -361,6 +361,11 @@ function appliquerLangue(code) {
   }
   tts._mettreAJourBouton();
   musique._mettreAJourBouton();
+
+  const swipeHint = document.getElementById("swipe-hint");
+  if (swipeHint) swipeHint.textContent = ui.swipeHint;
+  const clavierHint = document.getElementById("clavier-hint");
+  if (clavierHint) clavierHint.textContent = ui.clavierHint;
 
   // Langue du document (accessibilité / synthèse vocale)
   document.documentElement.lang = code;
@@ -1130,9 +1135,11 @@ if (btnSpeedUp) {
 
 updateSpeedDisplay();
 
-// Hint swipe (mobile)
-const hint = document.getElementById("swipe-hint");
-if (hint) {
+// Hint de navigation : swipe (tactile) ou clavier (desktop). Le CSS n'en
+// affiche qu'un seul selon l'appareil ; on anime l'opacité des deux.
+["swipe-hint", "clavier-hint"].forEach((id) => {
+  const hint = document.getElementById(id);
+  if (!hint) return;
   setTimeout(() => { hint.style.opacity = "1"; }, 600);
-  setTimeout(() => { hint.style.opacity = "0"; }, 3200);
-}
+  setTimeout(() => { hint.style.opacity = "0"; }, 4200);
+});

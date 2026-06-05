@@ -500,7 +500,8 @@ button.btn-flash {
 /* ============================================================
    HINT SWIPE
    ============================================================ */
-#swipe-hint {
+#swipe-hint,
+#clavier-hint {
   display: none;
   position: fixed;
   bottom: 130px;
@@ -518,8 +519,13 @@ button.btn-flash {
   white-space: nowrap;
 }
 
+/* Tactile → indication de glissement ; clavier/souris → indication clavier */
 @media (hover: none) and (pointer: coarse) {
   #swipe-hint { display: block; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #clavier-hint { display: block; }
 }
 
 /* ============================================================
@@ -881,6 +887,23 @@ button.btn-flash {
 
   .container {
     margin-top: 44px;
+  }
+
+  /* Hauteur du « livre » constante : la rangée est calée sur la hauteur de la
+     colonne du chapelet (indépendante du texte). Les prières plus longues
+     défilent à l'intérieur de la page de gauche au lieu d'agrandir le livre. */
+  .row {
+    height: calc(var(--chap-size) * 1.45 + 40px);
+  }
+
+  #col-priere {
+    /* Hauteur bornée à celle de la colonne du chapelet (box-sizing:border-box
+       hérité de Bootstrap) : le texte long défile à l'intérieur au lieu de
+       déborder/agrandir le livre. min-height:0 lève le min-content du flex. */
+    min-height: 0;
+    max-height: calc(var(--chap-size) * 1.45 + 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   body::before {
