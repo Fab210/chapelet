@@ -299,6 +299,18 @@ function changerMystere(type) {
   currentIndex = -1;
   currentImageSrc = null;
 
+  // Réaffiche l'image par défaut du centre sur la page initiale : sinon, en
+  // changeant de mystère/langue, l'image restait figée sur le dernier mystère
+  // (updateRosaire ne rappelle changerImageMystere que si l'historique en a un).
+  const imgCentre = document.getElementById("image-centre");
+  if (imgCentre && imgCentre.src.indexOf("jesus.jpg") === -1) {
+    imgCentre.classList.add("fade-out");
+    setTimeout(() => {
+      imgCentre.src = "./img/jesus.jpg";
+      imgCentre.classList.remove("fade-out");
+    }, 200);
+  }
+
   for (let key in sousIndexes) delete sousIndexes[key];
 
   perlesAtteintes.length = 0;
