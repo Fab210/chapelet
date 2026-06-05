@@ -165,10 +165,12 @@ h1, h3 {
   height: calc(var(--chap-size) * 0.036);
   border-radius: 50%;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
+  /* Perles en bois de rose chaud poli — accordées au parchemin/brun/or
+     (auparavant bleu ardoise froid, qui jurait avec le reste de la page). */
   background:
-    radial-gradient(50% 40% at 30% 23%, #fff 12%, #0000 25%),
-    radial-gradient(80% 80% at center, #aaa3 30px, hsl(110,55%,92%,0.5) 50%, hsl(188,63%,84%) 80%),
-    linear-gradient(35deg, #2b3750, #3a4a6b 50%, #1d2637);
+    radial-gradient(50% 40% at 30% 23%, #fff 14%, #0000 26%),
+    radial-gradient(75% 75% at 38% 32%, rgba(214,167,110,0.55) 0%, rgba(122,74,40,0.35) 45%, rgba(40,24,13,0.9) 80%),
+    linear-gradient(35deg, #3a2113, #5e3a20 48%, #2a1709);
   transform: perspective(100px) rotateX(10deg) rotateY(10deg);
 }
 
@@ -1284,6 +1286,48 @@ body.mode-cathedrale::after {
   body.mode-cathedrale .container,
   body.mode-cathedrale::after,
   body.mode-cathedrale .bougie::before { animation: none; }
+}
+
+/* ---- Barres du bas accordées à la pénombre ---- */
+#mysteres-buttons,
+#priere-bandeau,
+#priere-titre,
+#priere-extrait {
+  transition: background 1.6s ease, border-color 1.6s ease, color 1.6s ease;
+}
+
+/* Barre des mystères (bas de page) */
+body.mode-cathedrale #mysteres-buttons {
+  background: rgba(20, 19, 32, 0.82);
+  border-top-color: rgba(212, 175, 90, 0.32);
+}
+body.mode-cathedrale #mysteres-buttons button {
+  color: rgba(232, 212, 170, 0.6);
+}
+body.mode-cathedrale #mysteres-buttons button:hover {
+  color: #f2e3bf;
+  background: rgba(212, 175, 90, 0.12);
+  border-color: rgba(212, 175, 90, 0.4);
+}
+body.mode-cathedrale #mysteres-buttons button.active {
+  background: linear-gradient(145deg, #d8b463, #b68a2e);
+  border-color: #d8b463;
+  color: #2a1d0e;
+}
+
+/* Bandeau et titre de prière (mobile) */
+body.mode-cathedrale #priere-bandeau {
+  background: rgba(22, 21, 34, 0.9);
+  border-color: rgba(212, 175, 90, 0.3);
+}
+body.mode-cathedrale #priere-extrait,
+body.mode-cathedrale #priere-titre {
+  color: #e8d6ad;
+}
+body.mode-cathedrale #btn-modal-priere {
+  background: rgba(212, 175, 90, 0.12);
+  border-color: rgba(212, 175, 90, 0.35);
+  color: #e8d6ad;
 }
 
 /* ---- Cierges votifs flanquant le livre ---- */
