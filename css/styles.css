@@ -886,7 +886,10 @@ button.btn-flash {
   }
 
   .container {
-    margin-top: 46px;
+    /* Livre remonté : il se glisse juste sous la barre (sa marge interne
+       supérieure reste vide, le contenu passe sous la barre sans la toucher). */
+    margin-top: 30px;
+    padding-top: 26px;
   }
 
   /* Hauteur du « livre » constante : la rangée est calée sur la hauteur de la
