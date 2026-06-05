@@ -1048,6 +1048,8 @@ const musique = {
     const icon = btn.querySelector("#musique-icon");
     if (icon) icon.textContent = this.actif ? "🎶" : "🎵";
     btn.classList.toggle("en-lecture", this.actif);
+    // Ambiance « cathédrale grégorienne » synchronisée avec la musique
+    document.body.classList.toggle("mode-cathedrale", this.actif);
     const ui = traductions[langueActuelle].ui;
     btn.setAttribute("aria-label", this.actif ? ui.musiqueOn : ui.musiqueOff);
     btn.setAttribute("title", this.actif ? ui.musiqueOn : ui.musiqueOff);
