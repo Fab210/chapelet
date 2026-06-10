@@ -354,6 +354,9 @@ function appliquerLangue(code) {
   set("btn-speed-down", { "aria-label": ui.ralentir, title: ui.ralentir });
   set("btn-speed-up", { "aria-label": ui.accelerer, title: ui.accelerer });
   set("btn-modal-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
+  set("centre-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
+  const centreTexte = document.getElementById("centre-priere-texte");
+  if (centreTexte) centreTexte.textContent = ui.voirPriere;
   const fermerBtn = document.getElementById("btn-modal-fermer");
   if (fermerBtn) {
     fermerBtn.textContent = `✕ ${ui.fermer}`;
@@ -1123,6 +1126,9 @@ document.getElementById("select-langue").addEventListener("change", (e) => chang
 
 // Modal prière (mobile)
 document.getElementById("btn-modal-priere").addEventListener("click", toggleModal);
+// Infobulle au centre du chapelet : ouvre/ferme la prière complète (mobile)
+const btnCentrePriere = document.getElementById("centre-priere");
+if (btnCentrePriere) btnCentrePriere.addEventListener("click", toggleModal);
 document.getElementById("btn-modal-fermer").addEventListener("click", fermerModal);
 document.getElementById("modal-overlay").addEventListener("click", fermerModal);
 // Clic sur le bandeau lui-même ouvre aussi le modal

@@ -87,6 +87,12 @@
             <img id="image-centre" src="./img/jesus.jpg" alt="Image du centre du chapelet"
             onerror="this.onerror=null; this.src='./img/jesus.jpg';">
           </div>
+          <!-- INFOBULLE CENTRE (mobile) : toucher le centre ouvre la prière complète.
+               Enfant direct de #chapelet (et non de #cercle, vidé au resize). -->
+          <button id="centre-priere" type="button" aria-label="Voir la prière complète" title="Voir la prière complète">
+            <span id="centre-priere-icone" aria-hidden="true">ⓘ</span>
+            <span id="centre-priere-texte">Voir la prière</span>
+          </button>
         </div>
 
         <!-- BANDEAU MOBILE : en dessous du chapelet -->
