@@ -815,6 +815,7 @@ const tts = {
   _texteActuel: "",
   _charIndex: 0,
   _seq: 0,
+  _autoErreurs: 0,
 
   changerVoix(langCodes) {
     if (!window.speechSynthesis) return;
@@ -890,21 +891,58 @@ const tts = {
     utterance.pitch  = tts.pitch;
     utterance.volume = tts.volume;
 
-    utterance.onboundary = (e) => { tts._charIndex = offset + e.charIndex; };
-    utterance.onstart    = () => { tts.actif = true;  tts._mettreAJourBouton(); musique.ducker(); };
-    utterance.onerror    = () => { tts.actif = false; tts._mettreAJourBouton(); musique.restaurerVolume(); };
-    utterance.onend      = () => {
+    // Enchaînement automatique vers la prière suivante.
+    // Appelé sur onend (succès) ET sur onerror non volontaire, pour qu'une voix
+    // qui échoue (ex. voix réseau d'une autre langue) ne fige pas toute la
+    // récitation après la première prière.
+    const continuerAutoPlay = (estErreur) => {
       tts.actif = false;
       tts._mettreAJourBouton();
       musique.restaurerVolume();
       if (!tts.autoPlay) return;
+      // Garde-fou : si plusieurs prières échouent d'affilée (voix de la langue
+      // réellement indisponible), on arrête au lieu de défiler en silence.
+      if (estErreur) {
+        if (++tts._autoErreurs > 2) { tts.autoPlay = false; tts._autoErreurs = 0; return; }
+      } else {
+        tts._autoErreurs = 0;
+      }
       const btnAvance = document.getElementById("avance");
       if (!btnAvance || btnAvance.disabled) {
         tts.autoPlay = false;
         return;
       }
       avancePriere(true);
-      setTimeout(() => { if (tts.autoPlay) tts.lirePriereCourante(); }, 600);
+      // Lecture de la prière suivante SANS speechSynthesis.cancel() : sur Safari
+      // (macOS), un cancel() suivi de speak() hors d'un geste utilisateur échoue
+      // souvent en silence — cause probable de l'arrêt après la 1re prière.
+      // Ici le moteur est déjà au repos (utterance terminée), cancel() est inutile.
+      setTimeout(() => {
+        if (!tts.autoPlay) return;
+        const texteSuivant = extraireTexteTTS(currentPriere.innerHTML);
+        if (!texteSuivant.trim()) return;
+        tts._texteActuel = texteSuivant;
+        tts._charIndex = 0;
+        tts._seq++;
+        tts._lireDepuis(0);
+      }, 600);
+    };
+
+    utterance.onboundary = (e) => { tts._charIndex = offset + e.charIndex; };
+    utterance.onstart    = () => { tts.actif = true;  tts._mettreAJourBouton(); musique.ducker(); };
+    utterance.onend      = () => continuerAutoPlay(false);
+    utterance.onerror    = (e) => {
+      // « interrupted »/« canceled » = annulation volontaire (notre cancel(),
+      // changement de prière/langue) : ne pas enchaîner, sinon double avance.
+      const err = e && e.error;
+      if (err === "interrupted" || err === "canceled") {
+        tts.actif = false;
+        tts._mettreAJourBouton();
+        musique.restaurerVolume();
+        return;
+      }
+      // Vraie erreur de synthèse : on poursuit la prière suivante.
+      continuerAutoPlay(true);
     };
 
     speechSynthesis.speak(utterance);
@@ -953,6 +991,7 @@ const tts = {
     tts.actif = false;
     tts.autoPlay = false;
     tts._enPause = false;
+    tts._autoErreurs = 0;
     tts._mettreAJourBouton();
     musique.restaurerVolume();
   },
