@@ -972,8 +972,14 @@ const tts = {
 // MUSIQUE GRÉGORIENNE
 // ============================================================
 
-// Pistes hébergées localement (domaine public, Wikimedia Commons) — voir audio/CREDITS.txt
+// Pistes hébergées localement (Wikimedia Commons : domaine public + CC BY-SA) — voir audio/CREDITS.txt
 const pistesGregoriennes = [
+  "./audio/ave_maria.mp3",
+  "./audio/salve_regina.mp3",
+  "./audio/pater_noster.mp3",
+  "./audio/magnificat.mp3",
+  "./audio/tollite_hostias.mp3",
+  "./audio/cantique_racine.mp3",
   "./audio/de_profundis.mp3",
   "./audio/alma_redemptoris_mater.mp3",
   "./audio/loquetur_dominus.mp3",
@@ -1048,6 +1054,10 @@ const musique = {
     if (!btn) return;
     const icon = btn.querySelector("#musique-icon");
     if (icon) icon.textContent = this.actif ? "🎶" : "🎵";
+    const label = btn.querySelector("#musique-label");
+    if (label) label.textContent = this.actif
+      ? traductions[langueActuelle].ui.musiqueOn
+      : traductions[langueActuelle].ui.musiqueOff;
     btn.classList.toggle("en-lecture", this.actif);
     // Ambiance « cathédrale grégorienne » synchronisée avec la musique
     document.body.classList.toggle("mode-cathedrale", this.actif);

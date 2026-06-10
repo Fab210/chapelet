@@ -24,12 +24,16 @@
   <div id="bougies-cathedrale" aria-hidden="true">
     <div class="bougie-groupe gauche">
       <span class="bougie basse"></span>
+      <span class="bougie moyenne"></span>
       <span class="bougie haute"></span>
       <span class="bougie moyenne"></span>
+      <span class="bougie basse"></span>
     </div>
     <div class="bougie-groupe droite">
+      <span class="bougie basse"></span>
       <span class="bougie moyenne"></span>
       <span class="bougie haute"></span>
+      <span class="bougie moyenne"></span>
       <span class="bougie basse"></span>
     </div>
   </div>
@@ -64,6 +68,7 @@
         <div id="tts-controls">
           <button id="btn-musique" aria-label="Musique grégorienne" title="Musique grégorienne">
             <span id="musique-icon">🎵</span>
+            <span id="musique-label">Música gregoriana</span>
           </button>
           <button id="btn-tts" aria-label="Lire la prière" title="Lire la prière à voix haute">
             <span id="tts-icon">🔊</span>
@@ -135,11 +140,31 @@
   <div id="swipe-hint">← Glisser pour naviguer →</div>
   <div id="clavier-hint">Touches ← → ou Espace pour naviguer</div>
 
+  <!-- CRÉDITS MUSIQUE — attribution exigée par la licence CC BY-SA 3.0 -->
+  <details id="credits-musique">
+    <summary title="Crédits de la musique">♪ Crédits</summary>
+    <div class="credits-corps">
+      Chants — Wikimedia Commons (domaine public &amp; CC&nbsp;BY-SA).<br>
+      Chants chantés par la <strong>Schola Gregoriana</strong> et
+      <strong>Les Petits Chanteurs de Passy</strong>, sous licence
+      <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC&nbsp;BY-SA&nbsp;3.0</a>.<br>
+      Détails et liens : <em>audio/CREDITS.txt</em>.
+    </div>
+  </details>
+
   <audio id="audio-gregorien" preload="none"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
   <script src="js/scripts.js"></script>
+
+  <!-- GoatCounter — statistiques de visites (sans cookie, conforme RGPD).
+       ⚠️ À FAIRE : crée un compte gratuit sur https://www.goatcounter.com/
+       puis remplace MON-CODE ci-dessous par le code choisi à l'inscription
+       (ex. si ton tableau de bord est https://rosaire.goatcounter.com,
+        le code est « rosaire »). -->
+  <script data-goatcounter="https://MON-CODE.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

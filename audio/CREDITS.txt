@@ -1,8 +1,11 @@
-Chants grégoriens — sources (Wikimedia Commons, domaine public)
+Chants grégoriens — sources et licences
 ================================================================
 
-Fichiers transcodés en MP3 depuis les enregistrements OGG de Wikimedia Commons,
-hébergés localement pour la fiabilité de lecture.
+Fichiers transcodés en MP3 depuis Wikimedia Commons, hébergés localement
+pour la fiabilité de lecture.
+
+
+--- Domaine public ---
 
 - de_profundis.mp3
   https://commons.wikimedia.org/wiki/File:De_profundis.ogg
@@ -15,5 +18,40 @@ hébergés localement pour la fiabilité de lecture.
 
 - kyrie_cambrai.mp3
   https://commons.wikimedia.org/wiki/File:Kyrie_55,_Vatican_ad_lib._VI,_Cambrai.ogg
+
+
+--- Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0) ---
+    Attribution obligatoire : auteur + licence ci-dessous (reprise aussi
+    dans la mention visible du site).
+
+  Interprètes :
+    • Schola Gregoriana (séminaire pallottin d'Ołtarzew, Pologne,
+      dir. Dariusz Smolarek)
+    • Les Petits Chanteurs de Passy
+  Licence commune : CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0/
+
+- ave_maria.mp3
+  « Ave Maria » — Schola Gregoriana.
+  https://commons.wikimedia.org/wiki/File:Schola_Gregoriana-Ave_Maria.ogg
+
+- salve_regina.mp3
+  « Salve Regina » (Hermann de Reichenau) — Les Petits Chanteurs de Passy.
+  https://commons.wikimedia.org/wiki/File:Petits_Chanteurs_de_Passy_-_Salve_Regina_de_Hermann_Contract.ogg
+
+- pater_noster.mp3
+  « Pater Noster » — Schola Gregoriana.
+  https://commons.wikimedia.org/wiki/File:Schola_Gregoriana-Pater_Noster.ogg
+
+- magnificat.mp3
+  « Antiphona et Magnificat » — Schola Gregoriana.
+  https://commons.wikimedia.org/wiki/File:Schola_Gregoriana-Antiphona_et_Magnificat.ogg
+
+- tollite_hostias.mp3
+  « Tollite Hostias » (Camille Saint-Saëns) — Les Petits Chanteurs de Passy.
+  https://commons.wikimedia.org/wiki/File:Petits_Chanteurs_de_Passy_-_Tollite_Hostias_de_Saint-Saens.ogg
+
+- cantique_racine.mp3
+  « Cantique de Jean Racine » (Gabriel Fauré) — Les Petits Chanteurs de Passy.
+  https://commons.wikimedia.org/wiki/File:Petits_Chanteurs_de_Passy_-_Cantique_de_Racine_de_Gabriel_Faure.ogg
 
 Vérifier la page de chaque fichier pour la licence/attribution exacte.

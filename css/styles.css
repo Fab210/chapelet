@@ -1120,15 +1120,19 @@ button.btn-flash {
   z-index: 10;
 }
 
-/* Barre du haut atténuée : s'efface visuellement, réapparaît au survol. */
+/* Barre du haut atténuée : s'efface visuellement, réapparaît au survol.
+   Le bouton musique est volontairement exclu pour rester pleinement visible
+   et invitant (la lueur dorée ne doit pas être bridée par l'opacité du groupe). */
 #langue-select-wrapper,
-#tts-controls {
+#btn-tts,
+#tts-speed {
   opacity: 0.55;
   transition: opacity 0.25s ease;
 }
 
 #langue-select-wrapper:hover,
-#tts-controls:hover {
+#tts-controls:hover #btn-tts,
+#tts-controls:hover #tts-speed {
   opacity: 1;
 }
 
@@ -1160,25 +1164,43 @@ button.btn-flash {
    BOUTON MUSIQUE GRÉGORIENNE
    ============================================================ */
 #btn-musique {
-  background: transparent;
-  border: 1.5px solid rgba(92, 64, 38, 0.35);
-  color: #5c4026;
-  padding: 6px 12px;
+  background: rgba(212, 175, 90, 0.07);
+  border: 1.5px solid rgba(184, 138, 46, 0.55);
+  color: #8a6314;
+  padding: 6px 14px;
   border-radius: 20px;
   font-size: 18px;
   min-height: 36px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
+  gap: 7px;
+}
+
+#musique-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+}
+
+/* Appel discret : lueur dorée qui « respire » tant que la musique est à l'arrêt,
+   pour inviter à l'allumer. S'éteint dès que la musique joue. */
+@keyframes appel-musique {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 90, 0); }
+  50%      { box-shadow: 0 0 13px 1px rgba(212, 175, 90, 0.5); }
+}
+
+#btn-musique:not(.en-lecture) {
+  animation: appel-musique 3.6s ease-in-out infinite;
 }
 
 #btn-musique:hover {
-  background: rgba(92, 64, 38, 0.08);
-  border-color: rgba(92, 64, 38, 0.6);
+  background: rgba(212, 175, 90, 0.16);
+  border-color: rgba(184, 138, 46, 0.85);
   transform: scale(1.03);
+  animation: none;
 }
 
 #btn-musique:active {
@@ -1186,11 +1208,17 @@ button.btn-flash {
 }
 
 #btn-musique.en-lecture {
-  background: rgba(92, 64, 38, 0.12);
-  border-color: rgba(92, 64, 38, 0.7);
+  background: rgba(184, 138, 46, 0.18);
+  border-color: rgba(184, 138, 46, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #btn-musique:not(.en-lecture) { animation: none; }
 }
 
 @media (max-width: 767px) {
+  #musique-label { display: none; }
+
   #btn-musique {
     padding: 8px;
     border-radius: 50%;
@@ -1237,22 +1265,41 @@ body,
   opacity: 0;
   transition: opacity 1.6s ease;
   background:
-    /* rosace (rose window) en haut au centre */
-    radial-gradient(circle at 50% 2%, rgba(150, 110, 205, 0.22) 0 5%, rgba(70, 120, 210, 0.15) 7% 10%, rgba(190, 70, 80, 0.13) 11% 14%, transparent 17%),
-    /* lueurs de vitraux des angles (bleu, rubis) */
-    radial-gradient(42% 58% at 14% 2%, rgba(72, 104, 205, 0.34), transparent 70%),
-    radial-gradient(42% 58% at 86% 2%, rgba(190, 64, 76, 0.32), transparent 70%),
-    /* faisceaux de lumière descendant des fenêtres (god rays) */
-    linear-gradient(168deg, rgba(220, 225, 255, 0.07) 0%, transparent 27%),
-    linear-gradient(192deg, rgba(255, 228, 178, 0.06) 0%, transparent 27%),
+    /* grande rosace (rose window) en haut au centre — anneaux de vitraux */
+    radial-gradient(circle at 50% -1%, rgba(186, 134, 232, 0.34) 0 4%, transparent 4.6%),
+    radial-gradient(circle at 50% -1%,
+      rgba(120, 150, 232, 0.30) 5% 8%,
+      rgba(210, 80, 96, 0.26) 9% 12%,
+      rgba(244, 202, 112, 0.24) 13% 15.5%,
+      transparent 18%),
+    /* vitraux latéraux en ogive (bleu à gauche, rubis à droite, haut et bas) */
+    radial-gradient(32% 56% at 3% 32%, rgba(72, 104, 205, 0.42), transparent 64%),
+    radial-gradient(32% 56% at 97% 32%, rgba(190, 64, 76, 0.40), transparent 64%),
+    radial-gradient(28% 48% at 3% 72%, rgba(190, 64, 76, 0.30), transparent 64%),
+    radial-gradient(28% 48% at 97% 72%, rgba(72, 104, 205, 0.30), transparent 64%),
+    /* lueurs de vitraux des angles hauts */
+    radial-gradient(42% 58% at 14% 2%, rgba(72, 104, 205, 0.40), transparent 70%),
+    radial-gradient(42% 58% at 86% 2%, rgba(190, 64, 76, 0.38), transparent 70%),
+    /* faisceaux de lumière descendant des fenêtres (god rays) plus marqués */
+    linear-gradient(166deg, rgba(222, 228, 255, 0.12) 0%, transparent 30%),
+    linear-gradient(194deg, rgba(255, 224, 170, 0.11) 0%, transparent 30%),
+    linear-gradient(176deg, rgba(232, 222, 255, 0.07) 0%, transparent 24%),
     /* halo chaud de bougie autour du livre */
-    radial-gradient(52% 46% at 50% 70%, rgba(255, 170, 70, 0.12), transparent 76%),
+    radial-gradient(52% 46% at 50% 70%, rgba(255, 170, 70, 0.14), transparent 76%),
     /* vignette de pierre froide, profonde et enveloppante */
-    radial-gradient(ellipse 82% 84% at 50% 40%, transparent 28%, rgba(14, 14, 28, 0.66) 62%, rgba(5, 4, 10, 0.94) 100%);
+    radial-gradient(ellipse 80% 82% at 50% 40%, transparent 22%, rgba(10, 10, 22, 0.80) 60%, rgba(3, 3, 8, 0.99) 100%);
 }
 
 body.mode-cathedrale #voile-cathedrale {
   opacity: 1;
+  animation: lueur-vitraux 11s ease-in-out infinite;
+}
+
+/* Lumière vivante : les vitraux palpitent doucement, comme le soleil
+   passant derrière les nuages au travers des verrières. */
+@keyframes lueur-vitraux {
+  0%, 100% { filter: saturate(1)    brightness(1);    }
+  50%      { filter: saturate(1.16) brightness(1.07); }
 }
 
 /* Brume lumineuse d'encens dérivant lentement dans la nef (avant-plan, très
@@ -1267,9 +1314,9 @@ body::after {
   transition: opacity 2s ease;
   mix-blend-mode: screen;
   background:
-    radial-gradient(26% 40% at 28% 26%, rgba(255, 234, 198, 0.055), transparent 60%),
-    radial-gradient(30% 44% at 72% 52%, rgba(198, 214, 255, 0.05), transparent 60%),
-    radial-gradient(24% 38% at 48% 82%, rgba(255, 224, 188, 0.045), transparent 60%);
+    radial-gradient(26% 40% at 28% 26%, rgba(255, 234, 198, 0.085), transparent 60%),
+    radial-gradient(30% 44% at 72% 52%, rgba(198, 214, 255, 0.075), transparent 60%),
+    radial-gradient(24% 38% at 48% 82%, rgba(255, 224, 188, 0.07), transparent 60%);
 }
 
 body.mode-cathedrale::after {
@@ -1285,6 +1332,7 @@ body.mode-cathedrale::after {
 @media (prefers-reduced-motion: reduce) {
   body.mode-cathedrale .container,
   body.mode-cathedrale::after,
+  body.mode-cathedrale #voile-cathedrale,
   body.mode-cathedrale .bougie::before { animation: none; }
 }
 
@@ -1378,7 +1426,7 @@ body.mode-cathedrale #bougies-cathedrale {
   background: radial-gradient(ellipse 50% 60% at 50% 72%,
     #fffdf3 0%, #ffe892 22%, #ffb43c 52%, rgba(255, 120, 20, 0.55) 74%, transparent 86%);
   border-radius: 50% 50% 48% 48% / 62% 62% 40% 40%;
-  box-shadow: 0 -2px 22px 6px rgba(255, 170, 60, 0.55);
+  box-shadow: 0 -2px 30px 9px rgba(255, 170, 60, 0.72);
   animation: flamme 1.7s ease-in-out infinite;
 }
 
@@ -1388,10 +1436,10 @@ body.mode-cathedrale #bougies-cathedrale {
   position: absolute;
   left: 50%;
   bottom: 100%;
-  width: 40px;
-  height: 40px;
-  transform: translate(-50%, 45%);
-  background: radial-gradient(circle, rgba(255, 180, 80, 0.30), transparent 70%);
+  width: 52px;
+  height: 52px;
+  transform: translate(-50%, 42%);
+  background: radial-gradient(circle, rgba(255, 184, 86, 0.42), rgba(255, 170, 70, 0.14) 48%, transparent 72%);
   border-radius: 50%;
 }
 
@@ -1399,6 +1447,8 @@ body.mode-cathedrale #bougies-cathedrale {
 .bougie-groupe .bougie:nth-child(1)::before { animation-delay: -0.2s; }
 .bougie-groupe .bougie:nth-child(2)::before { animation-delay: -0.9s; }
 .bougie-groupe .bougie:nth-child(3)::before { animation-delay: -1.4s; }
+.bougie-groupe .bougie:nth-child(4)::before { animation-delay: -0.6s; }
+.bougie-groupe .bougie:nth-child(5)::before { animation-delay: -1.1s; }
 
 @keyframes flamme {
   0%, 100% { transform: translateX(-50%) scaleY(1)    scaleX(1)    rotate(0deg);    opacity: 0.96; }
@@ -1412,18 +1462,27 @@ body.mode-cathedrale #bougies-cathedrale {
   #bougies-cathedrale { display: none; }
 }
 
-/* Mobile / tablette : le livre occupe tout l'écran, le voile passe donc en
-   avant-plan, pondéré vers le haut (lumière de vitraux descendante) pour ne
-   pas assombrir le bandeau de prière ni les boutons du bas. */
+/* Mobile / tablette : le livre occupe tout l'écran. Le voile « cathédrale »
+   passait en avant-plan avec une pénombre sombre qui masquait l'image et le
+   texte (effet « fumée »). On l'adoucit : « mix-blend-mode: screen » ne fait
+   qu'AJOUTER la lumière colorée des vitraux (comme une verrière qui projette
+   sa teinte), sans jamais assombrir. Plus de dégradé noir, et la brume
+   d'avant-plan est retirée. */
 @media (max-width: 1024px) {
   #voile-cathedrale {
     z-index: 40;
+    mix-blend-mode: screen;
     background:
-      radial-gradient(58% 34% at 18% 0%, rgba(72, 104, 205, 0.32), transparent 62%),
-      radial-gradient(58% 34% at 82% 0%, rgba(190, 64, 76, 0.30), transparent 62%),
-      radial-gradient(70% 30% at 50% -6%, rgba(155, 72, 170, 0.26), transparent 62%),
-      linear-gradient(to bottom, rgba(14, 12, 24, 0.30) 0%, rgba(14, 12, 24, 0.42) 12%, rgba(14, 12, 24, 0.12) 32%, transparent 48%);
+      /* rosace en haut au centre */
+      radial-gradient(circle at 50% -4%, rgba(186, 134, 232, 0.22) 0 6%, rgba(120, 150, 232, 0.17) 8% 12%, rgba(210, 80, 96, 0.15) 14% 18%, transparent 22%),
+      /* lueurs de vitraux des angles hauts, très douces */
+      radial-gradient(58% 36% at 16% 0%, rgba(72, 104, 205, 0.20), transparent 62%),
+      radial-gradient(58% 36% at 84% 0%, rgba(190, 64, 76, 0.18), transparent 62%),
+      radial-gradient(72% 32% at 50% -6%, rgba(155, 72, 170, 0.15), transparent 62%);
   }
+
+  /* La brume d'encens d'avant-plan reste retirée sur mobile. */
+  body.mode-cathedrale::after { display: none; }
 }
 
 /* Le livre : halo chaud de bougie + ombre profonde, qui vacille doucement */
@@ -1487,5 +1546,78 @@ body.mode-cathedrale .perle.active {
   body.mode-cathedrale #top-titre::before,
   body.mode-cathedrale #top-titre::after {
     background: linear-gradient(to right, transparent, rgba(212, 175, 90, 0.9), transparent);
+  }
+}
+
+/* ============================================================
+   CRÉDITS MUSIQUE — petite pastille discrète (coin bas-gauche),
+   dépliable au clic. Satisfait l'attribution exigée par CC BY-SA
+   sans encombrer l'interface.
+   ============================================================ */
+#credits-musique {
+  position: fixed;
+  left: 10px;
+  bottom: 8px;
+  z-index: 50;
+  font-family: 'Merriweather', serif;
+}
+
+#credits-musique > summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 11px;
+  color: rgba(92, 64, 38, 0.55);
+  background: rgba(252, 248, 238, 0.55);
+  border: 1px solid rgba(190, 150, 70, 0.30);
+  border-radius: 999px;
+  padding: 2px 9px;
+  user-select: none;
+  transition: color 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+  opacity: 0.65;
+}
+#credits-musique > summary::-webkit-details-marker { display: none; }
+#credits-musique > summary:hover { opacity: 1; color: rgba(92, 64, 38, 0.9); }
+
+#credits-musique .credits-corps {
+  position: absolute;
+  left: 0;
+  bottom: 28px;
+  width: max-content;
+  max-width: min(80vw, 340px);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #5c4026;
+  background: rgba(252, 248, 238, 0.97);
+  border: 1px solid rgba(190, 150, 70, 0.45);
+  border-radius: 10px;
+  padding: 9px 12px;
+  box-shadow: 0 6px 20px rgba(92, 64, 38, 0.18);
+}
+#credits-musique .credits-corps a { color: #8a5a1e; }
+
+/* Mode cathédrale : pastille accordée à la pénombre */
+body.mode-cathedrale #credits-musique > summary {
+  color: rgba(236, 201, 126, 0.6);
+  background: rgba(24, 22, 34, 0.5);
+  border-color: rgba(212, 175, 90, 0.35);
+}
+body.mode-cathedrale #credits-musique .credits-corps {
+  color: #e8dcc4;
+  background: rgba(24, 22, 34, 0.96);
+  border-color: rgba(212, 175, 90, 0.4);
+}
+body.mode-cathedrale #credits-musique .credits-corps a { color: #ecc97e; }
+
+/* Mobile : la barre du bas occupe l'espace — on remonte la pastille
+   dans le coin haut-gauche, sous le sélecteur de langue. */
+@media (max-width: 1024px) {
+  #credits-musique {
+    bottom: auto;
+    top: 52px;
+    left: 8px;
+  }
+  #credits-musique .credits-corps {
+    bottom: auto;
+    top: 28px;
   }
 }
