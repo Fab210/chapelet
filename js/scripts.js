@@ -508,10 +508,9 @@ function appliquerLangue(code) {
   set("tts-label", { text: ui.ecouter });
   set("btn-speed-down", { "aria-label": ui.ralentir, title: ui.ralentir });
   set("btn-speed-up", { "aria-label": ui.accelerer, title: ui.accelerer });
-  set("btn-modal-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
-  set("centre-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
-  // Le texte de la pastille centrale affiche le titre de la prière courante :
-  // il est mis à jour par mettreAJourBandeau() (appelé via changerMystere).
+  set("priere-titre", { "aria-label": ui.voirPriere, title: ui.voirPriere });
+  // Le contenu de #priere-titre (titre de la prière courante) est mis à
+  // jour par mettreAJourBandeau() (appelé via changerMystere).
   const fermerBtn = document.getElementById("btn-modal-fermer");
   if (fermerBtn) {
     fermerBtn.textContent = `✕ ${ui.fermer}`;
@@ -784,11 +783,39 @@ function extraireTexteTTS(html) {
   return texte.replace(/\s+/g, " ").trim();
 }
 
+// Titre du mystère courant (mobile/tablette) : toujours visible au-dessus
+// du chapelet pour savoir quel mystère on est en train de prier.
+function mettreAJourTitreMystere() {
+  const el = document.getElementById("mystere-titre");
+  if (!el) return;
+  const t = traductions[langueActuelle];
+
+  // Dernier mystère atteint d'après l'historique (même logique que l'image)
+  let num = -1;
+  for (let i = history.length - 1; i >= 0; i--) {
+    if (history[i].type === "sous") {
+      num = Object.keys(sousTextes).indexOf(String(history[i].index));
+      break;
+    }
+  }
+
+  if (num < 0) {
+    // Prières d'ouverture : afficher la série choisie
+    el.textContent = `${t.titreMisteres} ${t.nomsMysteres[typeMystere]}`;
+  } else {
+    num = Math.min(num, 4); // clé 60 (clôture) : rester sur le 5e mystère
+    const tmp = document.createElement("div");
+    tmp.innerHTML = t.mysteres[typeMystere][num];
+    const b = tmp.querySelector("b");
+    const nom = b ? b.textContent.trim() : "";
+    el.textContent = `${t.ordinals[num]} ${t.uniteMystere} : ${nom}`;
+  }
+}
+
 function mettreAJourBandeau() {
-  const extrait = document.getElementById("priere-extrait");
   const contenuModal = document.getElementById("modal-priere-contenu");
   const titre = document.getElementById("priere-titre");
-  if (!extrait || !contenuModal) return;
+  if (!contenuModal) return;
 
   const html = currentPriere.innerHTML;
 
@@ -797,30 +824,22 @@ function mettreAJourBandeau() {
   tmp.innerHTML = html;
   const titrEl = tmp.querySelector("h1, h2, h3");
   const nomPriere = titrEl ? titrEl.textContent.trim() : "";
-  if (titre) titre.textContent = nomPriere;
-
-  // Pastille au centre du chapelet (mobile) : titre de la prière courante,
-  // repli sur le libellé générique si la page n'a pas de titre.
-  const centreTexte = document.getElementById("centre-priere-texte");
-  if (centreTexte) {
-    centreTexte.textContent = nomPriere || traductions[langueActuelle].ui.voirPriere;
+  // Libellé générique sur la page initiale (sinon il dupliquerait le titre
+  // du mystère juste au-dessus) et quand la page n'a pas de titre : la
+  // pilule est le point d'accès au modal, elle ne doit jamais être vide.
+  if (titre) {
+    titre.textContent = (history.length && nomPriere)
+      ? nomPriere
+      : traductions[langueActuelle].ui.voirPriere;
   }
 
-  // Texte brut sans le titre pour le bandeau
-  if (titrEl) titrEl.remove();
-  const texteSansTitre = (tmp.textContent || tmp.innerText || "").trim();
-  extrait.textContent = texteSansTitre;
+  mettreAJourTitreMystere();
 
   // HTML complet dans le modal
   contenuModal.innerHTML = html;
 }
 
 let _modalHideTimer = null;
-
-// Icône « livre » en SVG (rendu garanti, contrairement à l'emoji 📖 absent
-// de certaines polices). Croix de fermeture en caractère ✕ (universel).
-const ICON_LIVRE = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.5 5.2 8.5 4.5 6 4.5c-1 0-2 .1-3 .4v13c1-.3 2-.4 3-.4 2.5 0 4.5.7 6 2 1.5-1.3 3.5-2 6-2 1 0 2 .1 3 .4v-13c-1-.3-2-.4-3-.4-2.5 0-4.5.7-6 2z"/><path d="M12 6.5v13"/></svg>`;
-const ICON_FERMER = "✕";
 
 function ouvrirModal() {
   const modal = document.getElementById("modal-priere");
@@ -840,7 +859,6 @@ function ouvrirModal() {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => modal.classList.add("open"));
   });
-  document.getElementById("btn-modal-icon").innerHTML = ICON_FERMER;
 }
 
 function fermerModal() {
@@ -849,7 +867,6 @@ function fermerModal() {
   if (!modal || !overlay) return;
 
   modal.classList.remove("open");
-  document.getElementById("btn-modal-icon").innerHTML = ICON_LIVRE;
   // Masquer après la transition (timer mémorisé pour pouvoir l'annuler
   // si le modal est rouvert avant la fin de la transition).
   clearTimeout(_modalHideTimer);
@@ -1286,18 +1303,16 @@ document.getElementById("btn-glorieux").addEventListener("click", () => changerM
 
 document.getElementById("select-langue").addEventListener("change", (e) => changerLangue(e.target.value));
 
-// Modal prière (mobile)
-document.getElementById("btn-modal-priere").addEventListener("click", toggleModal);
-// Infobulle au centre du chapelet : ouvre/ferme la prière complète (mobile)
-const btnCentrePriere = document.getElementById("centre-priere");
-if (btnCentrePriere) btnCentrePriere.addEventListener("click", toggleModal);
+// Modal prière (mobile/tablette) : ouvert via le titre au-dessus du chapelet
+const titrePriere = document.getElementById("priere-titre");
+if (titrePriere) {
+  titrePriere.addEventListener("click", toggleModal);
+  titrePriere.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") toggleModal();
+  });
+}
 document.getElementById("btn-modal-fermer").addEventListener("click", fermerModal);
 document.getElementById("modal-overlay").addEventListener("click", fermerModal);
-// Clic sur le bandeau lui-même ouvre aussi le modal
-document.getElementById("priere-bandeau").addEventListener("click", (e) => {
-  if (e.target.closest("#btn-modal-priere")) return;
-  toggleModal();
-});
 
 // Musique grégorienne
 musique.init();
