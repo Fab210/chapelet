@@ -345,6 +345,14 @@ h1, h3 {
     flex-shrink: 0;
   }
 
+  /* Titre de la prière : tronqué avec « … » si trop long pour la pastille */
+  #centre-priere-texte {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   #centre-priere:hover,
   #centre-priere:active {
     background: rgba(251, 245, 234, 1);

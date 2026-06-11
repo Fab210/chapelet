@@ -355,8 +355,8 @@ function appliquerLangue(code) {
   set("btn-speed-up", { "aria-label": ui.accelerer, title: ui.accelerer });
   set("btn-modal-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
   set("centre-priere", { "aria-label": ui.voirPriere, title: ui.voirPriere });
-  const centreTexte = document.getElementById("centre-priere-texte");
-  if (centreTexte) centreTexte.textContent = ui.voirPriere;
+  // Le texte de la pastille centrale affiche le titre de la prière courante :
+  // il est mis à jour par mettreAJourBandeau() (appelé via changerMystere).
   const fermerBtn = document.getElementById("btn-modal-fermer");
   if (fermerBtn) {
     fermerBtn.textContent = `✕ ${ui.fermer}`;
@@ -643,6 +643,13 @@ function mettreAJourBandeau() {
   const titrEl = tmp.querySelector("h1, h2, h3");
   const nomPriere = titrEl ? titrEl.textContent.trim() : "";
   if (titre) titre.textContent = nomPriere;
+
+  // Pastille au centre du chapelet (mobile) : titre de la prière courante,
+  // repli sur le libellé générique si la page n'a pas de titre.
+  const centreTexte = document.getElementById("centre-priere-texte");
+  if (centreTexte) {
+    centreTexte.textContent = nomPriere || traductions[langueActuelle].ui.voirPriere;
+  }
 
   // Texte brut sans le titre pour le bandeau
   if (titrEl) titrEl.remove();
