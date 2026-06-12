@@ -553,7 +553,8 @@ function generatePerles() {
   let chapSize;
   if (window.innerWidth >= 1025) {
     // Desktop « livre » deux colonnes : chapelet dans la colonne droite
-    chapSize = Math.min(500, window.innerWidth * 0.9, (window.innerHeight - 260) / 1.45);
+    // (306px = budget vertical hors chapelet, dont le titre du mystère)
+    chapSize = Math.min(500, window.innerWidth * 0.9, (window.innerHeight - 306) / 1.45);
   } else if (window.innerWidth >= 768) {
     // Tablette en colonne unique : plus de place, on agrandit
     chapSize = Math.min(600, window.innerWidth * 0.85, (window.innerHeight - 320) / 1.45);

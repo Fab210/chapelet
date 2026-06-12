@@ -2,7 +2,9 @@
    TAILLE DE BASE DU CHAPELET (contrainte largeur ET hauteur viewport)
    ============================================================ */
 :root {
-  --chap-size: min(500px, 90vw, calc((100vh - 260px) / 1.45));
+  /* 306px = budget vertical hors chapelet (barres, marges, titre du
+     mystère). DOIT rester synchronisé avec generatePerles() (JS). */
+  --chap-size: min(500px, 90vw, calc((100vh - 306px) / 1.45));
 }
 
 /* ============================================================
@@ -803,7 +805,8 @@ button.btn-flash {
      colonne du chapelet (indépendante du texte). Les prières plus longues
      défilent à l'intérieur de la page de gauche au lieu d'agrandir le livre. */
   .row {
-    height: calc(var(--chap-size) * 1.45 + 40px);
+    /* +86px : paddings du conteneur (40) + titre du mystère (~46) */
+    height: calc(var(--chap-size) * 1.45 + 86px);
   }
 
   #col-priere {
@@ -879,37 +882,42 @@ button.btn-flash {
 }
 
 /* ============================================================
-   TITRES AU-DESSUS DU CHAPELET (mobile + tablette ≤1024px)
-   #mystere-titre : mystère en cours, toujours visible.
-   #priere-titre  : bouton-pilule qui ouvre la prière complète
-   (remplace l'ancienne pastille centrale et le bandeau du bas).
+   TITRES AU-DESSUS DU CHAPELET
+   #mystere-titre : mystère en cours, toujours visible (toutes tailles,
+   pour méditer le mystère pendant la prière).
+   #priere-titre  : bouton-pilule qui ouvre la prière complète,
+   mobile + tablette ≤1024px uniquement (remplace l'ancienne pastille
+   centrale et le bandeau du bas ; sur desktop la prière est à gauche).
    ============================================================ */
-#mystere-titre,
 #priere-titre {
   display: none;
 }
 
-@media (max-width: 1024px) {
-  #mystere-titre {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: #3a2d1f;
-    text-align: center;
-    padding: 8px 18px 0;
-    letter-spacing: 0.02em;
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    box-sizing: border-box;
-  }
+#mystere-titre {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #3a2d1f;
+  text-align: center;
+  /* Espace sous le titre : les perles du haut du cercle débordent d'une
+     demi-perle (~11px) au-dessus de la boîte #chapelet, le texte ne doit
+     pas les toucher. */
+  padding: 8px 18px 6px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
 
+@media (max-width: 1024px) {
   /* Bouton-pilule : même affordance que l'ancienne pastille centrale */
   #priere-titre {
     display: inline-block;
-    margin: 6px auto 2px;
+    margin: 0 auto 12px;
     max-width: calc(100% - 48px);
     padding: 7px 18px;
     border-radius: 999px;
