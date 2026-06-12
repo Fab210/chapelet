@@ -18,7 +18,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     boutons:       { joyeux: "Gozosos", lumineux: "Luminosos", douloureux: "Dolorosos", glorieux: "Gloriosos" },
     nav:           { recule: "Voltar", avance: "Avançar" },
-    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido", swipeHint: "← Deslize para navegar →", clavierHint: "Teclas ← → ou Espaço para navegar", titreApp: "Santo Rosário" },
+    ui: { ecouter: "Ouvir", lire: "Ler a oração", pause: "Pausar", musiqueOn: "Parar a música", musiqueOff: "Música gregoriana", voirPriere: "Ver a oração completa", fermer: "Fechar", ralentir: "Mais devagar", accelerer: "Mais rápido", swipeHint: "← Deslize para navegar →", clavierHint: "Teclas ← → ou Espaço para navegar", titreApp: "Santo Rosário", tuto: "Como rezar o terço" },
     ordinals: ["1º", "2º", "3º", "4º", "5º"],
     mysteres: {
   joyeux: [
@@ -69,7 +69,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     boutons:       { joyeux: "Joyeux", lumineux: "Lumineux", douloureux: "Douloureux", glorieux: "Glorieux" },
     nav:           { recule: "Reculer", avance: "Avancer" },
-    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer", swipeHint: "← Glisser pour naviguer →", clavierHint: "Touches ← → ou Espace pour naviguer", titreApp: "Saint Rosaire" },
+    ui: { ecouter: "Écouter", lire: "Lire la prière", pause: "Mettre en pause", musiqueOn: "Arrêter la musique", musiqueOff: "Musique grégorienne", voirPriere: "Voir la prière complète", fermer: "Fermer", ralentir: "Ralentir", accelerer: "Accélérer", swipeHint: "← Glisser pour naviguer →", clavierHint: "Touches ← → ou Espace pour naviguer", titreApp: "Saint Rosaire", tuto: "Apprendre le chapelet" },
     ordinals: ["1er", "2e", "3e", "4e", "5e"],
     mysteres: {
       joyeux: [
@@ -120,7 +120,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     boutons:       { joyeux: "Joyful", lumineux: "Luminous", douloureux: "Sorrowful", glorieux: "Glorious" },
     nav:           { recule: "Back", avance: "Next" },
-    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster", swipeHint: "← Swipe to navigate →", clavierHint: "Use ← → or Space to navigate", titreApp: "Holy Rosary" },
+    ui: { ecouter: "Listen", lire: "Read the prayer", pause: "Pause", musiqueOn: "Stop the music", musiqueOff: "Gregorian chant", voirPriere: "View full prayer", fermer: "Close", ralentir: "Slower", accelerer: "Faster", swipeHint: "← Swipe to navigate →", clavierHint: "Use ← → or Space to navigate", titreApp: "Holy Rosary", tuto: "How to pray the Rosary" },
     ordinals: ["1st", "2nd", "3rd", "4th", "5th"],
     mysteres: {
       joyeux: [
@@ -171,7 +171,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     boutons:       { joyeux: "Freudenreich", lumineux: "Lichtreich", douloureux: "Schmerzhaft", glorieux: "Glorreich" },
     nav:           { recule: "Zurück", avance: "Weiter" },
-    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller", swipeHint: "← Wischen zum Navigieren →", clavierHint: "Tasten ← → oder Leertaste zum Navigieren", titreApp: "Heiliger Rosenkranz" },
+    ui: { ecouter: "Anhören", lire: "Gebet vorlesen", pause: "Pause", musiqueOn: "Musik stoppen", musiqueOff: "Gregorianischer Gesang", voirPriere: "Vollständiges Gebet anzeigen", fermer: "Schließen", ralentir: "Langsamer", accelerer: "Schneller", swipeHint: "← Wischen zum Navigieren →", clavierHint: "Tasten ← → oder Leertaste zum Navigieren", titreApp: "Heiliger Rosenkranz", tuto: "Rosenkranz beten lernen" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -224,7 +224,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Freederäich", lumineux: "Liichträich", douloureux: "Schmäerzhaft", glorieux: "Glorräich" },
     boutons:       { joyeux: "Freederäich", lumineux: "Liichträich", douloureux: "Schmäerzhaft", glorieux: "Glorräich" },
     nav:           { recule: "Zréck", avance: "Weider" },
-    ui: { ecouter: "Nolauschteren", lire: "Gebiet virliesen", pause: "Paus", musiqueOn: "Musek stoppen", musiqueOff: "Gregorianesche Gesank", voirPriere: "Ganzt Gebiet weisen", fermer: "Zoumaachen", ralentir: "Méi lues", accelerer: "Méi séier", swipeHint: "← Wësche fir ze navigéieren →", clavierHint: "Tasten ← → oder Espace fir ze navigéieren", titreApp: "Hellege Rousekranz" },
+    ui: { ecouter: "Nolauschteren", lire: "Gebiet virliesen", pause: "Paus", musiqueOn: "Musek stoppen", musiqueOff: "Gregorianesche Gesank", voirPriere: "Ganzt Gebiet weisen", fermer: "Zoumaachen", ralentir: "Méi lues", accelerer: "Méi séier", swipeHint: "← Wësche fir ze navigéieren →", clavierHint: "Tasten ← → oder Espace fir ze navigéieren", titreApp: "Hellege Rousekranz", tuto: "Rousekranz biede léieren" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -275,7 +275,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Blijde", lumineux: "Lichtende", douloureux: "Droevige", glorieux: "Glorievolle" },
     boutons:       { joyeux: "Blijde", lumineux: "Lichtende", douloureux: "Droevige", glorieux: "Glorievolle" },
     nav:           { recule: "Terug", avance: "Verder" },
-    ui: { ecouter: "Luisteren", lire: "Gebed voorlezen", pause: "Pauzeren", musiqueOn: "Muziek stoppen", musiqueOff: "Gregoriaans gezang", voirPriere: "Volledig gebed bekijken", fermer: "Sluiten", ralentir: "Langzamer", accelerer: "Sneller", swipeHint: "← Veeg om te navigeren →", clavierHint: "Toetsen ← → of spatiebalk om te navigeren", titreApp: "Heilige Rozenkrans" },
+    ui: { ecouter: "Luisteren", lire: "Gebed voorlezen", pause: "Pauzeren", musiqueOn: "Muziek stoppen", musiqueOff: "Gregoriaans gezang", voirPriere: "Volledig gebed bekijken", fermer: "Sluiten", ralentir: "Langzamer", accelerer: "Sneller", swipeHint: "← Veeg om te navigeren →", clavierHint: "Toetsen ← → of spatiebalk om te navigeren", titreApp: "Heilige Rozenkrans", tuto: "Rozenkrans leren bidden" },
     ordinals: ["1e", "2e", "3e", "4e", "5e"],
     mysteres: {
       joyeux: [
@@ -326,7 +326,7 @@ const traductions = {
     nomsMysteres: { joyeux: "Glædelige", lumineux: "Lysets", douloureux: "Smertefulde", glorieux: "Ærefulde" },
     boutons:       { joyeux: "Glædelige", lumineux: "Lysets", douloureux: "Smertefulde", glorieux: "Ærefulde" },
     nav:           { recule: "Tilbage", avance: "Videre" },
-    ui: { ecouter: "Lyt", lire: "Læs bønnen op", pause: "Pause", musiqueOn: "Stop musikken", musiqueOff: "Gregoriansk sang", voirPriere: "Vis hele bønnen", fermer: "Luk", ralentir: "Langsommere", accelerer: "Hurtigere", swipeHint: "← Stryg for at navigere →", clavierHint: "Tasterne ← → eller mellemrum for at navigere", titreApp: "Den hellige Rosenkrans" },
+    ui: { ecouter: "Lyt", lire: "Læs bønnen op", pause: "Pause", musiqueOn: "Stop musikken", musiqueOff: "Gregoriansk sang", voirPriere: "Vis hele bønnen", fermer: "Luk", ralentir: "Langsommere", accelerer: "Hurtigere", swipeHint: "← Stryg for at navigere →", clavierHint: "Tasterne ← → eller mellemrum for at navigere", titreApp: "Den hellige Rosenkrans", tuto: "Lær rosenkransen" },
     ordinals: ["1.", "2.", "3.", "4.", "5."],
     mysteres: {
       joyeux: [
@@ -529,6 +529,13 @@ function appliquerLangue(code) {
   }
   tts._mettreAJourBouton();
   musique._mettreAJourBouton();
+
+  // Lien vers le tutoriel imprimable, dans la langue courante
+  const lienTuto = document.getElementById("lien-tuto");
+  if (lienTuto) {
+    lienTuto.textContent = `✛ ${ui.tuto}`;
+    lienTuto.href = `tuto-chapelet-imprimable.html?lang=${code}`;
+  }
 
   const topTitre = document.querySelector("#top-titre span");
   if (topTitre) topTitre.textContent = ui.titreApp;

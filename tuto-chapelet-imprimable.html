@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment prier le chapelet — tutoriel imprimable</title>
+<meta name="description" content="Tutoriel pas à pas pour prier le chapelet, avec schéma annoté du chapelet, prières et mystères du rosaire par jour. Format imprimable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#faf6ed; --card:#fffdf7; --ink:#1d1a16; --ink-soft:#5b5246;
+  --rubric:#9e1b1b; --rubric-pale:#f6e8e6; --gold:#a8842c; --gold-pale:#f3ecd9; --line:#e3dac6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--parchment);color:var(--ink);font-size:16px;line-height:1.5}
+.page{max-width:1040px;margin:0 auto;padding:0 22px 50px}
+
+header{text-align:center;padding:42px 20px 24px;border-bottom:3px double var(--gold);margin-bottom:28px}
+.cross{font-size:22px;color:var(--rubric);letter-spacing:12px;margin-bottom:10px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(32px,5.5vw,48px);line-height:1.05}
+h1 em{font-style:italic;color:var(--rubric)}
+.subtitle{font-style:italic;color:var(--ink-soft);margin-top:8px}
+
+h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:26px;text-align:center;margin-bottom:14px}
+.orn{display:flex;align-items:center;gap:12px;justify-content:center;margin:4px 0 16px;color:var(--gold)}
+.orn::before,.orn::after{content:"";height:1px;width:80px;background:var(--gold)}
+
+.tuto{display:grid;grid-template-columns:46% 54%;gap:24px;align-items:start}
+@media(max-width:820px){.tuto{grid-template-columns:1fr}}
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px}
+.diagram svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft);margin-top:8px;font-style:italic}
+.legend span{display:flex;align-items:center;gap:6px}
+.dotS,.dotL{width:11px;height:11px;border-radius:50%;display:inline-block}
+.dotS{background:#8a5a33}.dotL{background:var(--gold);width:14px;height:14px}
+
+.steps{counter-reset:step}
+.step{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:13px 16px 13px 56px;margin-bottom:10px;position:relative}
+.step::before{
+  counter-increment:step;content:counter(step);
+  position:absolute;left:14px;top:13px;width:28px;height:28px;border-radius:50%;
+  background:var(--rubric);color:#fff;font-weight:700;font-size:16px;
+  display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;
+}
+.step h3{font-family:'Cormorant Garamond',serif;font-size:18.5px;font-weight:700;color:var(--rubric);margin-bottom:2px}
+.step p{font-size:15px}
+.r{color:var(--rubric);font-style:italic}
+.step .pr{font-style:italic;color:var(--ink-soft);font-size:14px;margin-top:3px}
+
+.repeat{border:1.5px dashed var(--gold);background:var(--gold-pale);border-radius:6px;padding:12px 16px;margin:12px 0;font-size:15px;text-align:center}
+.repeat b{font-family:'Cormorant Garamond',serif;font-size:17px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+.card h3{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:19px;color:var(--rubric);margin-bottom:8px}
+.card p{margin-bottom:8px;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:13.5px;letter-spacing:1px;text-transform:uppercase;color:var(--rubric);text-align:left;padding:5px 8px 5px 0;border-bottom:1.5px solid var(--gold)}
+td{padding:6px 8px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.k{font-weight:600;white-space:nowrap}
+
+footer{margin-top:36px;padding-top:14px;border-top:3px double var(--gold);text-align:center;font-size:13px;color:var(--ink-soft);font-style:italic}
+
+.printbtn{position:fixed;right:18px;bottom:18px;background:var(--rubric);color:#fff;border:none;border-radius:99px;padding:10px 20px;font-family:'EB Garamond',serif;font-size:15px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.printbtn:hover{background:#7c1414}
+
+@media print{
+  body{background:#fff;font-size:11.5px}
+  .printbtn{display:none}
+  header{padding-top:10px}
+  .page{padding-bottom:10px}
+  .tuto{break-inside:avoid}
+  .card,.step{break-inside:avoid}
+  .prayers{break-before:page}
+}
+</style>
+</head>
+<body>
+<button class="printbtn" id="btn-imprimer" onclick="window.print()">🖨 Imprimer</button>
+
+<header>
+  <div class="cross">☩</div>
+  <h1 id="titre-page">Comment prier <em>le chapelet</em></h1>
+  <p class="subtitle" id="sous-titre">Tutoriel pas à pas, avec le schéma du chapelet — environ 20 minutes de prière</p>
+</header>
+
+<div class="page">
+
+  <section class="tuto">
+    <div class="diagram">
+      <svg viewBox="0 0 640 820" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du chapelet">
+<style>
+.chain{fill:none;stroke:#b6a06a;stroke-width:2}
+.bS{fill:#8a5a33;stroke:#5e3a1d;stroke-width:1.4}
+.bL{fill:#a8842c;stroke:#6d5316;stroke-width:1.6}
+.medal{fill:#e9ddbe;stroke:#a8842c;stroke-width:2.5}
+.crossw{fill:#8a5a33;stroke:#5e3a1d;stroke-width:1.4}
+.mark{fill:#9e1b1b}
+.markt{fill:#fff;font:700 15px 'EB Garamond',Georgia,serif;text-anchor:middle}
+.lead{stroke:#9e1b1b;stroke-width:1.3;stroke-dasharray:3 3;fill:none}
+.cap{font:italic 14.5px 'EB Garamond',Georgia,serif;fill:#5b5246}
+</style>
+<circle cx="310" cy="290" r="195" class="chain"/>
+<line x1="310" y1="485" x2="310" y2="737" class="chain"/>
+<circle cx="262.8" cy="479.2" r="9.5" class="bL"/>
+<circle cx="242.8" cy="473.1" r="6" class="bS"/>
+<circle cx="223.6" cy="464.8" r="6" class="bS"/>
+<circle cx="205.4" cy="454.6" r="6" class="bS"/>
+<circle cx="188.4" cy="442.4" r="6" class="bS"/>
+<circle cx="172.7" cy="428.5" r="6" class="bS"/>
+<circle cx="158.7" cy="413.0" r="6" class="bS"/>
+<circle cx="146.4" cy="396.1" r="6" class="bS"/>
+<circle cx="136.0" cy="378.0" r="6" class="bS"/>
+<circle cx="127.5" cy="358.8" r="6" class="bS"/>
+<circle cx="121.2" cy="338.9" r="6" class="bS"/>
+<circle cx="117.1" cy="318.4" r="9.5" class="bL"/>
+<circle cx="115.1" cy="297.6" r="6" class="bS"/>
+<circle cx="115.5" cy="276.6" r="6" class="bS"/>
+<circle cx="118.0" cy="255.9" r="6" class="bS"/>
+<circle cx="122.8" cy="235.5" r="6" class="bS"/>
+<circle cx="129.7" cy="215.8" r="6" class="bS"/>
+<circle cx="138.7" cy="196.9" r="6" class="bS"/>
+<circle cx="149.6" cy="179.1" r="6" class="bS"/>
+<circle cx="162.4" cy="162.5" r="6" class="bS"/>
+<circle cx="176.9" cy="147.5" r="6" class="bS"/>
+<circle cx="192.9" cy="134.0" r="6" class="bS"/>
+<circle cx="210.3" cy="122.4" r="9.5" class="bL"/>
+<circle cx="228.8" cy="112.7" r="6" class="bS"/>
+<circle cx="248.3" cy="105.0" r="6" class="bS"/>
+<circle cx="268.5" cy="99.5" r="6" class="bS"/>
+<circle cx="289.1" cy="96.1" r="6" class="bS"/>
+<circle cx="310.0" cy="95.0" r="6" class="bS"/>
+<circle cx="330.9" cy="96.1" r="6" class="bS"/>
+<circle cx="351.5" cy="99.5" r="6" class="bS"/>
+<circle cx="371.7" cy="105.0" r="6" class="bS"/>
+<circle cx="391.2" cy="112.7" r="6" class="bS"/>
+<circle cx="409.7" cy="122.4" r="6" class="bS"/>
+<circle cx="427.1" cy="134.0" r="9.5" class="bL"/>
+<circle cx="443.1" cy="147.5" r="6" class="bS"/>
+<circle cx="457.6" cy="162.5" r="6" class="bS"/>
+<circle cx="470.4" cy="179.1" r="6" class="bS"/>
+<circle cx="481.3" cy="196.9" r="6" class="bS"/>
+<circle cx="490.3" cy="215.8" r="6" class="bS"/>
+<circle cx="497.2" cy="235.5" r="6" class="bS"/>
+<circle cx="502.0" cy="255.9" r="6" class="bS"/>
+<circle cx="504.5" cy="276.6" r="6" class="bS"/>
+<circle cx="504.9" cy="297.6" r="6" class="bS"/>
+<circle cx="502.9" cy="318.4" r="6" class="bS"/>
+<circle cx="498.8" cy="338.9" r="9.5" class="bL"/>
+<circle cx="492.5" cy="358.8" r="6" class="bS"/>
+<circle cx="484.0" cy="378.0" r="6" class="bS"/>
+<circle cx="473.6" cy="396.1" r="6" class="bS"/>
+<circle cx="461.3" cy="413.0" r="6" class="bS"/>
+<circle cx="447.3" cy="428.5" r="6" class="bS"/>
+<circle cx="431.6" cy="442.4" r="6" class="bS"/>
+<circle cx="414.6" cy="454.6" r="6" class="bS"/>
+<circle cx="396.4" cy="464.8" r="6" class="bS"/>
+<circle cx="377.2" cy="473.1" r="6" class="bS"/>
+<circle cx="357.2" cy="479.2" r="6" class="bS"/>
+<circle cx="310" cy="485" r="20" class="medal"/>
+<text x="310" y="490" text-anchor="middle" style="font:700 13px Georgia,serif;fill:#a8842c">✣</text>
+<circle cx="310.0" cy="533.0" r="9.5" class="bL"/>
+<circle cx="310.0" cy="573.0" r="6" class="bS"/>
+<circle cx="310.0" cy="604.0" r="6" class="bS"/>
+<circle cx="310.0" cy="635.0" r="6" class="bS"/>
+<circle cx="310.0" cy="675.0" r="9.5" class="bL"/>
+<g class="crossw"><rect x="303" y="703" width="14" height="74" rx="4"/><rect x="284" y="721" width="52" height="14" rx="4"/></g>
+<path class="lead" d="M388,755 L338,737"/><circle class="mark" cx="388" cy="755" r="13"/><text class="markt" x="388" y="760">1</text>
+<path class="lead" d="M388,669 L321,675"/><circle class="mark" cx="388" cy="669" r="13"/><text class="markt" x="388" y="674">2</text>
+<path class="lead" d="M388,604 L318,604"/><circle class="mark" cx="388" cy="604" r="13"/><text class="markt" x="388" y="609">3</text>
+<path class="lead" d="M388,531 L321,533"/><circle class="mark" cx="388" cy="531" r="13"/><text class="markt" x="388" y="536">4</text>
+<path class="lead" d="M398,459 L332,481"/><circle class="mark" cx="398" cy="459" r="13"/><text class="markt" x="398" y="464">5</text>
+<path class="lead" d="M220.69480276765995,383.01112669381854 L166.69480276765995,409.01112669381854"/><circle class="mark" cx="220.69480276765995" cy="383.01112669381854" r="13"/><text class="markt" x="220.69480276765995" y="388.01112669381854">6</text>
+<path class="lead" d="M161.07718967283412,272.38642731074805 L123.07718967283412,310.38642731074805"/><circle class="mark" cx="161.07718967283412" cy="272.38642731074805" r="13"/><text class="markt" x="161.07718967283412" y="277.38642731074805">7</text>
+<path class="lead" d="M89,290 a26,26 0 0 1 16,-34" />
+<text class="cap" x="2" y="246" id="svg-sens">sens de la prière →</text>
+</svg>
+
+      <div class="legend">
+        <span><i class="dotL"></i> <span id="legende-grosse">gros grain — Notre Père</span></span>
+        <span><i class="dotS"></i> <span id="legende-petite">petit grain — Je vous salue Marie</span></span>
+      </div>
+    </div>
+
+    <div>
+      <div class="steps">
+        <div class="step">
+          <h3 id="e1h">Sur la croix — on commence</h3>
+          <p id="e1p">Faire le <b>signe de croix</b>, puis réciter le <b>Credo</b> (Symbole des Apôtres).</p>
+          <p class="pr" id="e1pr">« Au nom du Père, et du Fils, et du Saint-Esprit. Amen. »</p>
+        </div>
+        <div class="step">
+          <h3 id="e2h">Premier gros grain</h3>
+          <p id="e2p">Réciter un <b>Notre Père</b>.</p>
+        </div>
+        <div class="step">
+          <h3 id="e3h">Les trois petits grains</h3>
+          <p id="e3p">Trois <b>Je vous salue Marie</b> — <span class="r">pour demander la foi, l'espérance et la charité.</span></p>
+        </div>
+        <div class="step">
+          <h3 id="e4h">Gros grain suivant</h3>
+          <p id="e4p">Réciter le <b>Gloire au Père</b>, puis <b>annoncer le premier mystère</b> du jour <span class="r">(voir la table des mystères ci-dessous)</span> et réciter un <b>Notre Père</b>.</p>
+        </div>
+        <div class="step">
+          <h3 id="e5h">La médaille — porte de la couronne</h3>
+          <p id="e5p">On entre dans la boucle des cinq dizaines. <span class="r">Pendant chaque dizaine, méditer la scène de l'Évangile annoncée.</span></p>
+        </div>
+        <div class="step">
+          <h3 id="e6h">Les dix petits grains — la dizaine</h3>
+          <p id="e6p">Réciter <b>dix Je vous salue Marie</b> en méditant le mystère.</p>
+        </div>
+        <div class="step">
+          <h3 id="e7h">Le gros grain entre les dizaines</h3>
+          <p id="e7p">Réciter le <b>Gloire au Père</b> <span class="r">(et, si on le souhaite, la prière de Fatima)</span>, puis <b>annoncer le mystère suivant</b> et réciter un <b>Notre Père</b>.</p>
+          <p class="pr" id="e7pr">« Ô mon Jésus, pardonnez-nous nos péchés, préservez-nous du feu de l'enfer, conduisez au ciel toutes les âmes, surtout celles qui ont le plus besoin de votre miséricorde. »</p>
+        </div>
+      </div>
+
+      <div class="repeat" id="repeter"><b>Répéter les étapes 6 et 7</b> jusqu'à avoir prié les cinq dizaines,<br>en faisant le tour complet de la couronne.</div>
+
+      <div class="step" style="counter-reset:step 7">
+        <h3 id="e8h">De retour à la médaille — on conclut</h3>
+        <p id="e8p">Réciter le <b>Salve Regina</b> (Salut, ô Reine), les intentions personnelles, puis terminer par le <b>signe de croix</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="prayers" style="margin-top:30px">
+    <h2 id="prieres-titre">Les prières du chapelet</h2>
+    <div class="orn">✣</div>
+    <div class="grid2">
+      <div class="card">
+        <h3 id="t-notrepere">Notre Père</h3>
+        <p id="x-notrepere">Notre Père qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du Mal. Amen.</p>
+        <h3 style="margin-top:14px" id="t-gloria">Gloire au Père</h3>
+        <p id="x-gloria">Gloire au Père, et au Fils, et au Saint-Esprit, comme il était au commencement, maintenant et toujours, et dans les siècles des siècles. Amen.</p>
+      </div>
+      <div class="card">
+        <h3 id="t-ave">Je vous salue Marie</h3>
+        <p id="x-ave">Je vous salue, Marie, pleine de grâce ; le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen.</p>
+        <h3 style="margin-top:14px" id="t-salve">Salve Regina</h3>
+        <p id="x-salve">Salut, ô Reine, Mère de miséricorde, notre vie, notre douceur et notre espérance, salut ! Enfants d'Ève exilés, nous crions vers vous ; vers vous nous soupirons, gémissant et pleurant dans cette vallée de larmes. Ô vous notre avocate, tournez vers nous vos regards miséricordieux. Et après cet exil, montrez-nous Jésus, le fruit béni de vos entrailles. Ô clémente, ô miséricordieuse, ô douce Vierge Marie !</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 id="t-table">Les mystères selon le jour de la semaine</h3>
+      <table>
+        <tr><th id="th-jour">Jour</th><th id="th-serie">Série</th><th id="th-myst">Les cinq mystères à méditer</th></tr>
+        <tr><td class="k" id="d1">Lundi · Samedi</td><td class="k" id="s1">Joyeux</td><td id="l1">Annonciation — Visitation — Nativité — Présentation au Temple — Recouvrement de Jésus au Temple</td></tr>
+        <tr><td class="k" id="d2">Mardi · Vendredi</td><td class="k" id="s2">Douloureux</td><td id="l2">Agonie à Gethsémani — Flagellation — Couronnement d'épines — Portement de croix — Crucifixion</td></tr>
+        <tr><td class="k" id="d3">Mercredi · Dimanche</td><td class="k" id="s3">Glorieux</td><td id="l3">Résurrection — Ascension — Pentecôte — Assomption — Couronnement de Marie</td></tr>
+        <tr><td class="k" id="d4">Jeudi</td><td class="k" id="s4">Lumineux</td><td id="l4">Baptême au Jourdain — Noces de Cana — Annonce du Royaume — Transfiguration — Institution de l'Eucharistie</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:14px" class="r" id="conseil">Conseil : on peut confier une intention à chaque dizaine, et ne pas s'inquiéter des distractions — on ramène doucement son cœur au mystère, comme on ramène son regard.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div style="font-size:15px;letter-spacing:8px;color:#9e1b1b;margin-bottom:6px">☩</div>
+    <span id="pied">Un chapelet = cinq dizaines. Le Rosaire complet = les vingt mystères. — <i>Ad Iesum per Mariam.</i></span>
+  </footer>
+
+</div>
+
+<script>
+// ============================================================
+// TRADUCTIONS — le français est le contenu statique de la page ;
+// la langue est choisie via ?lang=xx (passé par l'app), sinon la
+// langue mémorisée de l'app (localStorage), sinon le français.
+// ============================================================
+const T = {
+  pt: {
+    docTitle: "Como rezar o terço — tutorial imprimível",
+    imprimer: "🖨 Imprimir",
+    titre: "Como rezar <em>o terço</em>",
+    sousTitre: "Tutorial passo a passo, com o esquema do terço — cerca de 20 minutos de oração",
+    sens: "sentido da oração →",
+    legG: "conta grande — Pai Nosso",
+    legP: "conta pequena — Ave Maria",
+    etapes: [
+      { h: "Na cruz — começa-se", p: "Fazer o <b>sinal da cruz</b>, depois rezar o <b>Creio</b> (Símbolo dos Apóstolos).", pr: "« Em nome do Pai, do Filho e do Espírito Santo. Amém. »" },
+      { h: "Primeira conta grande", p: "Rezar um <b>Pai Nosso</b>." },
+      { h: "As três contas pequenas", p: "Três <b>Ave Maria</b> — <span class=\"r\">para pedir a fé, a esperança e a caridade.</span>" },
+      { h: "Conta grande seguinte", p: "Rezar o <b>Glória ao Pai</b>, depois <b>anunciar o primeiro mistério</b> do dia <span class=\"r\">(ver a tabela dos mistérios abaixo)</span> e rezar um <b>Pai Nosso</b>." },
+      { h: "A medalha — porta da coroa", p: "Entra-se no círculo das cinco dezenas. <span class=\"r\">Durante cada dezena, meditar a cena do Evangelho anunciada.</span>" },
+      { h: "As dez contas pequenas — a dezena", p: "Rezar <b>dez Ave Maria</b> meditando o mistério." },
+      { h: "A conta grande entre as dezenas", p: "Rezar o <b>Glória ao Pai</b> <span class=\"r\">(e, se quiser, a oração de Fátima)</span>, depois <b>anunciar o mistério seguinte</b> e rezar um <b>Pai Nosso</b>.", pr: "« Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno; levai as almas todas para o Céu, principalmente as que mais precisarem da Vossa misericórdia. »" },
+    ],
+    repeter: "<b>Repetir as etapas 6 e 7</b> até ter rezado as cinco dezenas,<br>dando a volta completa à coroa.",
+    e8h: "De volta à medalha — conclui-se",
+    e8p: "Rezar a <b>Salve Rainha</b>, as intenções pessoais, e terminar com o <b>sinal da cruz</b>.",
+    prieresTitre: "As orações do terço",
+    np: ["Pai Nosso", "Pai Nosso que estais nos Céus, santificado seja o vosso Nome, venha a nós o vosso Reino, seja feita a vossa vontade assim na terra como no Céu. O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do Mal. Amém."],
+    gl: ["Glória ao Pai", "Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém."],
+    av: ["Ave Maria", "Ave Maria, cheia de graça, o Senhor é convosco. Bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém."],
+    sa: ["Salve Rainha", "Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva; a vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei; e depois deste desterro mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria."],
+    tableTitre: "Os mistérios segundo o dia da semana",
+    ths: ["Dia", "Série", "Os cinco mistérios a meditar"],
+    jours: ["Segunda · Sábado", "Terça · Sexta", "Quarta · Domingo", "Quinta"],
+    series: ["Gozosos", "Dolorosos", "Gloriosos", "Luminosos"],
+    listes: [
+      "Anunciação — Visitação — Nascimento de Jesus — Apresentação no Templo — Encontro de Jesus no Templo",
+      "Agonia no Horto — Flagelação — Coroação de espinhos — Jesus carrega a Cruz — Crucificação",
+      "Ressurreição — Ascensão — Pentecostes — Assunção — Coroação de Maria",
+      "Batismo no Jordão — Bodas de Caná — Anúncio do Reino — Transfiguração — Instituição da Eucaristia",
+    ],
+    conseil: "Conselho: pode-se confiar uma intenção a cada dezena, e não se preocupar com as distrações — traz-se docemente o coração de volta ao mistério, como se traz de volta o olhar.",
+    pied: "Um terço = cinco dezenas. O Rosário completo = os vinte mistérios. — <i>Ad Iesum per Mariam.</i>",
+  },
+  en: {
+    docTitle: "How to pray the Rosary — printable tutorial",
+    imprimer: "🖨 Print",
+    titre: "How to pray <em>the Rosary</em>",
+    sousTitre: "Step-by-step tutorial with the rosary diagram — about 20 minutes of prayer",
+    sens: "prayer direction →",
+    legG: "large bead — Our Father",
+    legP: "small bead — Hail Mary",
+    etapes: [
+      { h: "At the cross — we begin", p: "Make the <b>Sign of the Cross</b>, then recite the <b>Apostles' Creed</b>.", pr: "“In the name of the Father, and of the Son, and of the Holy Spirit. Amen.”" },
+      { h: "First large bead", p: "Recite one <b>Our Father</b>." },
+      { h: "The three small beads", p: "Three <b>Hail Marys</b> — <span class=\"r\">asking for faith, hope and charity.</span>" },
+      { h: "Next large bead", p: "Recite the <b>Glory Be</b>, then <b>announce the first mystery</b> of the day <span class=\"r\">(see the table of mysteries below)</span> and recite one <b>Our Father</b>." },
+      { h: "The medal — gateway to the loop", p: "We enter the loop of the five decades. <span class=\"r\">During each decade, meditate on the Gospel scene announced.</span>" },
+      { h: "The ten small beads — the decade", p: "Recite <b>ten Hail Marys</b> while meditating on the mystery." },
+      { h: "The large bead between decades", p: "Recite the <b>Glory Be</b> <span class=\"r\">(and, if you wish, the Fatima prayer)</span>, then <b>announce the next mystery</b> and recite one <b>Our Father</b>.", pr: "“O my Jesus, forgive us our sins, save us from the fires of hell, lead all souls to Heaven, especially those in most need of Thy mercy.”" },
+    ],
+    repeter: "<b>Repeat steps 6 and 7</b> until the five decades have been prayed,<br>going all the way around the loop.",
+    e8h: "Back at the medal — we conclude",
+    e8p: "Recite the <b>Hail, Holy Queen</b>, personal intentions, then finish with the <b>Sign of the Cross</b>.",
+    prieresTitre: "The prayers of the Rosary",
+    np: ["Our Father", "Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come, Thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen."],
+    gl: ["Glory Be", "Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen."],
+    av: ["Hail Mary", "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."],
+    sa: ["Hail, Holy Queen", "Hail, holy Queen, Mother of Mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve. To thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious Advocate, thine eyes of mercy toward us, and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary."],
+    tableTitre: "The mysteries by day of the week",
+    ths: ["Day", "Set", "The five mysteries to meditate"],
+    jours: ["Monday · Saturday", "Tuesday · Friday", "Wednesday · Sunday", "Thursday"],
+    series: ["Joyful", "Sorrowful", "Glorious", "Luminous"],
+    listes: [
+      "Annunciation — Visitation — Nativity — Presentation in the Temple — Finding of Jesus in the Temple",
+      "Agony in the Garden — Scourging at the Pillar — Crowning with Thorns — Carrying of the Cross — Crucifixion",
+      "Resurrection — Ascension — Pentecost — Assumption — Coronation of Mary",
+      "Baptism in the Jordan — Wedding at Cana — Proclamation of the Kingdom — Transfiguration — Institution of the Eucharist",
+    ],
+    conseil: "Tip: you may entrust an intention to each decade, and not worry about distractions — gently bring your heart back to the mystery, as you bring back your gaze.",
+    pied: "A chaplet = five decades. The full Rosary = all twenty mysteries. — <i>Ad Iesum per Mariam.</i>",
+  },
+  de: {
+    docTitle: "Wie man den Rosenkranz betet — druckbare Anleitung",
+    imprimer: "🖨 Drucken",
+    titre: "Wie man <em>den Rosenkranz</em> betet",
+    sousTitre: "Schritt-für-Schritt-Anleitung mit Rosenkranz-Schema — etwa 20 Minuten Gebet",
+    sens: "Gebetsrichtung →",
+    legG: "große Perle — Vaterunser",
+    legP: "kleine Perle — Gegrüßet seist du, Maria",
+    etapes: [
+      { h: "Am Kreuz — der Anfang", p: "Das <b>Kreuzzeichen</b> machen, dann das <b>Glaubensbekenntnis</b> beten.", pr: "„Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen.“" },
+      { h: "Erste große Perle", p: "Ein <b>Vaterunser</b> beten." },
+      { h: "Die drei kleinen Perlen", p: "Drei <b>Gegrüßet seist du, Maria</b> — <span class=\"r\">um Glaube, Hoffnung und Liebe zu bitten.</span>" },
+      { h: "Nächste große Perle", p: "Das <b>Ehre sei dem Vater</b> beten, dann das <b>erste Geheimnis</b> des Tages <b>ankündigen</b> <span class=\"r\">(siehe die Tabelle unten)</span> und ein <b>Vaterunser</b> beten." },
+      { h: "Die Medaille — Tor zum Kranz", p: "Man tritt in die Schleife der fünf Gesätze ein. <span class=\"r\">Während jedes Gesätzes die angekündigte Szene des Evangeliums betrachten.</span>" },
+      { h: "Die zehn kleinen Perlen — das Gesätz", p: "<b>Zehn Gegrüßet seist du, Maria</b> beten und dabei das Geheimnis betrachten." },
+      { h: "Die große Perle zwischen den Gesätzen", p: "Das <b>Ehre sei dem Vater</b> beten <span class=\"r\">(und, wenn man möchte, das Fatima-Gebet)</span>, dann das <b>nächste Geheimnis ankündigen</b> und ein <b>Vaterunser</b> beten.", pr: "„O mein Jesus, verzeih uns unsere Sünden, bewahre uns vor dem Feuer der Hölle, führe alle Seelen in den Himmel, besonders jene, die deiner Barmherzigkeit am meisten bedürfen.“" },
+    ],
+    repeter: "<b>Die Schritte 6 und 7 wiederholen</b>, bis die fünf Gesätze gebetet sind —<br>einmal rund um den Kranz.",
+    e8h: "Zurück an der Medaille — der Abschluss",
+    e8p: "Das <b>Salve Regina</b> beten, die persönlichen Anliegen, dann mit dem <b>Kreuzzeichen</b> schließen.",
+    prieresTitre: "Die Gebete des Rosenkranzes",
+    np: ["Vaterunser", "Vater unser im Himmel, geheiligt werde dein Name. Dein Reich komme. Dein Wille geschehe, wie im Himmel so auf Erden. Unser tägliches Brot gib uns heute. Und vergib uns unsere Schuld, wie auch wir vergeben unsern Schuldigern. Und führe uns nicht in Versuchung, sondern erlöse uns von dem Bösen. Amen."],
+    gl: ["Ehre sei dem Vater", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist, wie im Anfang, so auch jetzt und alle Zeit und in Ewigkeit. Amen."],
+    av: ["Gegrüßet seist du, Maria", "Gegrüßet seist du, Maria, voll der Gnade, der Herr ist mit dir. Du bist gebenedeit unter den Frauen und gebenedeit ist die Frucht deines Leibes, Jesus. Heilige Maria, Mutter Gottes, bitte für uns Sünder, jetzt und in der Stunde unseres Todes. Amen."],
+    sa: ["Salve Regina", "Sei gegrüßt, o Königin, Mutter der Barmherzigkeit, unser Leben, unsere Wonne und unsere Hoffnung, sei gegrüßt! Zu dir rufen wir verbannte Kinder Evas, zu dir seufzen wir trauernd und weinend in diesem Tal der Tränen. Wohlan denn, unsere Fürsprecherin, wende deine barmherzigen Augen uns zu und nach diesem Elend zeige uns Jesus, die gebenedeite Frucht deines Leibes. O gütige, o milde, o süße Jungfrau Maria."],
+    tableTitre: "Die Geheimnisse nach Wochentag",
+    ths: ["Tag", "Reihe", "Die fünf Geheimnisse zur Betrachtung"],
+    jours: ["Montag · Samstag", "Dienstag · Freitag", "Mittwoch · Sonntag", "Donnerstag"],
+    series: ["Freudenreich", "Schmerzhaft", "Glorreich", "Lichtreich"],
+    listes: [
+      "Verkündigung — Heimsuchung — Geburt Jesu — Darstellung im Tempel — Wiederfindung im Tempel",
+      "Todesangst am Ölberg — Geißelung — Dornenkrönung — Kreuztragung — Kreuzigung",
+      "Auferstehung — Himmelfahrt — Pfingsten — Aufnahme Mariens — Krönung Mariens",
+      "Taufe im Jordan — Hochzeit zu Kana — Verkündigung des Gottesreiches — Verklärung — Einsetzung der Eucharistie",
+    ],
+    conseil: "Tipp: Man kann jedem Gesätz ein Anliegen anvertrauen und sich über Ablenkungen nicht sorgen — man führt das Herz sanft zum Geheimnis zurück, wie man den Blick zurückführt.",
+    pied: "Ein Rosenkranz = fünf Gesätze. Der ganze Rosenkranz = die zwanzig Geheimnisse. — <i>Ad Iesum per Mariam.</i>",
+  },
+  lb: {
+    docTitle: "Wéi ee de Rousekranz biet — Uleedung fir ze drécken",
+    imprimer: "🖨 Drécken",
+    titre: "Wéi ee <em>de Rousekranz</em> biet",
+    sousTitre: "Schrëtt-fir-Schrëtt-Uleedung mam Schema vum Rousekranz — ongeféier 20 Minutte Gebiet",
+    sens: "Gebietsriichtung →",
+    legG: "grouss Pärel — Eise Papp",
+    legP: "kleng Pärel — Gegréisst bass du, Maria",
+    etapes: [
+      { h: "Um Kräiz — et fänkt un", p: "D'<b>Kräizzeechen</b> maachen, duerno d'<b>Glawensbekenntnis</b> bieden.", pr: "« Am Numm vum Papp a vum Jong a vum Hellege Geescht. Amen. »" },
+      { h: "Éischt grouss Pärel", p: "En <b>Eise Papp</b> bieden." },
+      { h: "Déi dräi kleng Pärelen", p: "Dräi <b>Gegréisst bass du, Maria</b> — <span class=\"r\">fir Glawen, Hoffnung a Léift ze froen.</span>" },
+      { h: "Nächst grouss Pärel", p: "D'<b>Éier dem Papp</b> bieden, duerno dat <b>éischt Geheimnis</b> vum Dag <b>ukënnegen</b> <span class=\"r\">(kuck d'Tabell ënnen)</span> an en <b>Eise Papp</b> bieden." },
+      { h: "D'Medail — d'Paart vun der Kroun", p: "Et geet an d'Schleef vun de fënnef Zéngtelen. <span class=\"r\">Wärend all Zéngtel d'Zeen aus dem Evangelium betruechten, déi ugekënnegt gouf.</span>" },
+      { h: "Déi zéng kleng Pärelen — den Zéngtel", p: "<b>Zéng Gegréisst bass du, Maria</b> bieden an dobäi d'Geheimnis betruechten." },
+      { h: "Déi grouss Pärel tëschent den Zéngtelen", p: "D'<b>Éier dem Papp</b> bieden <span class=\"r\">(a wann ee wëll, d'Fatima-Gebiet)</span>, duerno dat <b>nächst Geheimnis ukënnegen</b> an en <b>Eise Papp</b> bieden.", pr: "« O mäi Jesus, verzei eis eis Sënnen, bewar eis virum Feier vun der Häll, féier all Séilen an den Himmel, besonnesch déi, déi deng Baarmhäerzegkeet am meeschte brauchen. »" },
+    ],
+    repeter: "<b>D'Schrëtt 6 a 7 widderhuelen</b>, bis déi fënnef Zéngtele gebiet sinn —<br>eng ganz Ronn ronderëm d'Kroun.",
+    e8h: "Zréck bei der Medail — den Ofschloss",
+    e8p: "D'<b>Salve Regina</b> bieden, déi perséinlech Intentiounen, an dann mam <b>Kräizzeechen</b> ofschléissen.",
+    prieresTitre: "D'Gebieder vum Rousekranz",
+    np: ["Eise Papp", "Eise Papp am Himmel, däin Numm sief gehellegt. Däi Räich soll kommen, däi Wëll soll geschéien, wéi am Himmel, sou op der Äerd. Gëff eis haut eist deeglecht Brout, verzei eis eis Schold, wéi mir och deene verzeien, déi an eiser Schold sinn, féier eis net an d'Versuchung, mee maach eis fräi vum Béisen. Amen."],
+    gl: ["Éier dem Papp", "Éier dem Papp an dem Jong an dem Hellege Geescht, wéi am Ufank, sou och elo an all Zäit an an Éiwegkeet. Amen."],
+    av: ["Gegréisst bass du, Maria", "Gegréisst bass du, Maria, voller Gnod, den Här ass mat dir. Du bass geseent ënner de Fraen, a geseent ass d'Fruucht vun dengem Leif, Jesus. Helleg Maria, Mamm Gottes, biet fir eis Sënner, elo an an der Stonn vun eisem Doud. Amen."],
+    sa: ["Salve Regina", "Sief gegréisst, o Kinnigin, Mamm vun der Baarmhäerzegkeet, eist Liewen, eis Séissheet an eis Hoffnung, sief gegréisst! Bei dech ruffe mir, verbannte Kanner vun der Eva; no dir seufze mir, trauereg a kräischend an dësem Dall vun den Tréinen. Dofir, eis Firspriecherin, riicht deng baarmhäerzeg Aen op eis, a weis eis no dësem Exil de Jesus, déi geseent Fruucht vun dengem Leif. O mëll, o gnädeg, o séiss Jongfra Maria."],
+    tableTitre: "D'Geheimnisser nom Dag vun der Woch",
+    ths: ["Dag", "Serie", "Déi fënnef Geheimnisser fir ze betruechten"],
+    jours: ["Méindeg · Samschdeg", "Dënschdeg · Freideg", "Mëttwoch · Sonndeg", "Donneschdeg"],
+    series: ["Freederäich", "Schmäerzhaft", "Glorräich", "Liichträich"],
+    listes: [
+      "Verkënnegung — Visite bei der Elisabeth — Gebuert vum Jesus — Duerstellung am Tempel — Erëmfannen am Tempel",
+      "Doudesangscht um Uelegbierg — Geesselung — Kréinung mat Dären — Kräizdroen — Kräizegung",
+      "Operstéiung — Himmelfaart — Päischten — Opnam vun der Maria — Kréinung vun der Maria",
+      "Daf am Jordan — Hochzäit zu Kana — Verkënnegung vum Räich vu Gott — Verklärung — Asetzung vun der Eucharistie",
+    ],
+    conseil: "Rot: Ee kann all Zéngtel eng Intentioun uvertrauen, an sech net iwwer Oflenkunge suergen — ee féiert d'Häerz sanft bei d'Geheimnis zréck, wéi ee de Bléck zréckféiert.",
+    pied: "E Rousekranz = fënnef Zéngtelen. De ganze Rousekranz = déi zwanzeg Geheimnisser. — <i>Ad Iesum per Mariam.</i>",
+  },
+  nl: {
+    docTitle: "Hoe je de rozenkrans bidt — afdrukbare uitleg",
+    imprimer: "🖨 Afdrukken",
+    titre: "Hoe je <em>de rozenkrans</em> bidt",
+    sousTitre: "Stap-voor-stap-uitleg met het schema van de rozenkrans — ongeveer 20 minuten gebed",
+    sens: "bidrichting →",
+    legG: "grote kraal — Onze Vader",
+    legP: "kleine kraal — Weesgegroet",
+    etapes: [
+      { h: "Bij het kruis — we beginnen", p: "Het <b>kruisteken</b> maken, daarna de <b>geloofsbelijdenis</b> bidden.", pr: "« In de naam van de Vader en de Zoon en de heilige Geest. Amen. »" },
+      { h: "Eerste grote kraal", p: "Eén <b>Onze Vader</b> bidden." },
+      { h: "De drie kleine kralen", p: "Drie <b>Weesgegroetjes</b> — <span class=\"r\">om geloof, hoop en liefde te vragen.</span>" },
+      { h: "Volgende grote kraal", p: "Het <b>Eer aan de Vader</b> bidden, daarna het <b>eerste geheim</b> van de dag <b>aankondigen</b> <span class=\"r\">(zie de tabel hieronder)</span> en één <b>Onze Vader</b> bidden." },
+      { h: "De medaille — poort van de krans", p: "We gaan de kring van de vijf tientjes binnen. <span class=\"r\">Overweeg tijdens elk tientje de aangekondigde scène uit het Evangelie.</span>" },
+      { h: "De tien kleine kralen — het tientje", p: "<b>Tien Weesgegroetjes</b> bidden terwijl je het geheim overweegt." },
+      { h: "De grote kraal tussen de tientjes", p: "Het <b>Eer aan de Vader</b> bidden <span class=\"r\">(en, als je wilt, het Fatimagebed)</span>, daarna het <b>volgende geheim aankondigen</b> en één <b>Onze Vader</b> bidden.", pr: "« O mijn Jezus, vergeef ons onze zonden, behoed ons voor het vuur van de hel, breng alle zielen naar de hemel, vooral diegenen die uw barmhartigheid het meest nodig hebben. »" },
+    ],
+    repeter: "<b>Herhaal stap 6 en 7</b> tot de vijf tientjes gebeden zijn —<br>één volledige ronde van de krans.",
+    e8h: "Terug bij de medaille — we sluiten af",
+    e8p: "Het <b>Wees gegroet, o Koningin</b> bidden, de persoonlijke intenties, en eindigen met het <b>kruisteken</b>.",
+    prieresTitre: "De gebeden van de rozenkrans",
+    np: ["Onze Vader", "Onze Vader, die in de hemel zijt, uw naam worde geheiligd, uw rijk kome, uw wil geschiede op aarde zoals in de hemel. Geef ons heden ons dagelijks brood en vergeef ons onze schulden, zoals ook wij vergeven aan onze schuldenaren, en breng ons niet in beproeving, maar verlos ons van het kwade. Amen."],
+    gl: ["Eer aan de Vader", "Eer aan de Vader en de Zoon en de heilige Geest, zoals het was in het begin en nu en altijd en in de eeuwen der eeuwen. Amen."],
+    av: ["Weesgegroet", "Wees gegroet, Maria, vol van genade, de Heer is met u. Gij zijt de gezegende onder de vrouwen en gezegend is Jezus, de vrucht van uw schoot. Heilige Maria, Moeder van God, bid voor ons, zondaars, nu en in het uur van onze dood. Amen."],
+    sa: ["Wees gegroet, o Koningin", "Wees gegroet, koningin, moeder van barmhartigheid; ons leven, onze vreugde en onze hoop, wees gegroet. Tot u roepen wij, ballingen, kinderen van Eva; tot u smeken wij, zuchtend en wenend in dit dal van tranen. Daarom dan, onze voorspreekster, sla op ons uw barmhartige ogen, en toon ons, na deze ballingschap, Jezus, de gezegende vrucht van uw schoot. O goedertieren, o liefdevolle, o zoete maagd Maria."],
+    tableTitre: "De geheimen volgens de dag van de week",
+    ths: ["Dag", "Reeks", "De vijf geheimen om te overwegen"],
+    jours: ["Maandag · Zaterdag", "Dinsdag · Vrijdag", "Woensdag · Zondag", "Donderdag"],
+    series: ["Blijde", "Droevige", "Glorievolle", "Lichtende"],
+    listes: [
+      "Aankondiging — Bezoek aan Elisabet — Geboorte van Jezus — Opdracht in de tempel — Terugvinding in de tempel",
+      "Doodsangst in de Hof van Olijven — Geseling — Doornenkroning — Kruisdraging — Kruisiging",
+      "Verrijzenis — Hemelvaart — Pinksteren — Tenhemelopneming — Kroning van Maria",
+      "Doop in de Jordaan — Bruiloft van Kana — Verkondiging van het Rijk Gods — Gedaanteverandering — Instelling van de eucharistie",
+    ],
+    conseil: "Tip: je kunt aan elk tientje een intentie toevertrouwen, en je geen zorgen maken over verstrooidheid — breng je hart zachtjes terug naar het geheim, zoals je je blik terugbrengt.",
+    pied: "Een rozenhoedje = vijf tientjes. De volledige rozenkrans = de twintig geheimen. — <i>Ad Iesum per Mariam.</i>",
+  },
+  da: {
+    docTitle: "Sådan beder man rosenkransen — vejledning til udskrift",
+    imprimer: "🖨 Udskriv",
+    titre: "Sådan beder man <em>rosenkransen</em>",
+    sousTitre: "Trin-for-trin-vejledning med diagram over rosenkransen — cirka 20 minutters bøn",
+    sens: "bederetning →",
+    legG: "stor perle — Fadervor",
+    legP: "lille perle — Hil dig, Maria",
+    etapes: [
+      { h: "Ved korset — vi begynder", p: "Gør <b>korsets tegn</b>, og bed derefter <b>trosbekendelsen</b>.", pr: "« I Faderens og Sønnens og Helligåndens navn. Amen. »" },
+      { h: "Første store perle", p: "Bed ét <b>Fadervor</b>." },
+      { h: "De tre små perler", p: "Tre <b>Hil dig, Maria</b> — <span class=\"r\">for at bede om tro, håb og kærlighed.</span>" },
+      { h: "Næste store perle", p: "Bed <b>Ære være Faderen</b>, <b>forkynd derefter dagens første mysterium</b> <span class=\"r\">(se tabellen nedenfor)</span> og bed ét <b>Fadervor</b>." },
+      { h: "Medaljen — porten til kransen", p: "Vi går ind i de fem dekaders kreds. <span class=\"r\">Betragt under hver dekade den forkyndte scene fra evangeliet.</span>" },
+      { h: "De ti små perler — dekaden", p: "Bed <b>ti Hil dig, Maria</b>, mens du betragter mysteriet." },
+      { h: "Den store perle mellem dekaderne", p: "Bed <b>Ære være Faderen</b> <span class=\"r\">(og, hvis man ønsker, Fatima-bønnen)</span>, <b>forkynd derefter det næste mysterium</b> og bed ét <b>Fadervor</b>.", pr: "« O min Jesus, tilgiv os vore synder, frels os fra helvedes ild, før alle sjæle til himlen, især dem, der mest trænger til din barmhjertighed. »" },
+    ],
+    repeter: "<b>Gentag trin 6 og 7</b>, indtil de fem dekader er bedt —<br>hele vejen rundt om kransen.",
+    e8h: "Tilbage ved medaljen — vi slutter",
+    e8p: "Bed <b>Hil dig, Dronning</b>, de personlige intentioner, og slut med <b>korsets tegn</b>.",
+    prieresTitre: "Rosenkransens bønner",
+    np: ["Fadervor", "Fader vor, du som er i Himlen! Helliget vorde dit navn, komme dit rige, ske din vilje, som i Himlen således også på jorden. Giv os i dag vort daglige brød, og forlad os vor skyld, som også vi forlader vore skyldnere, og led os ikke i fristelse, men fri os fra det onde. Amen."],
+    gl: ["Ære være Faderen", "Ære være Faderen og Sønnen og Helligånden, som det var i begyndelsen, så nu og altid og i al evighed. Amen."],
+    av: ["Hil dig, Maria", "Hil dig, Maria, fuld af nåde! Herren er med dig! Velsignet er du iblandt kvinder, og velsignet er dit livs frugt, Jesus. Hellige Maria, Guds Moder! Bed for os syndere, nu og i vor dødstime. Amen."],
+    sa: ["Hil dig, Dronning", "Hil dig, Dronning, barmhjertighedens Moder, vort liv, vor fryd og vort håb, hil dig! Til dig råber vi, Evas landflygtige børn. Til dig sukker vi, sørgende og grædende i denne tårernes dal. Vend derfor, vor talsmand, dine barmhjertige øjne mod os, og vis os efter denne landflygtighed Jesus, dit livs velsignede frugt. O milde, o kærlige, o søde Jomfru Maria."],
+    tableTitre: "Mysterierne efter ugedag",
+    ths: ["Dag", "Række", "De fem mysterier at betragte"],
+    jours: ["Mandag · Lørdag", "Tirsdag · Fredag", "Onsdag · Søndag", "Torsdag"],
+    series: ["Glædelige", "Smertefulde", "Ærefulde", "Lysets"],
+    listes: [
+      "Bebudelsen — Besøget hos Elisabeth — Jesu fødsel — Fremstillingen i templet — Genfindelsen i templet",
+      "Dødsangsten i Getsemane — Piskningen — Tornekroningen — Korsbæringen — Korsfæstelsen",
+      "Opstandelsen — Himmelfarten — Pinsen — Marias optagelse i himlen — Marias kroning",
+      "Dåben i Jordan — Brylluppet i Kana — Forkyndelsen af Guds rige — Forklarelsen — Eukaristiens indstiftelse",
+    ],
+    conseil: "Råd: Man kan betro hver dekade en intention og ikke bekymre sig om distraktioner — man fører blidt sit hjerte tilbage til mysteriet, som man fører sit blik tilbage.",
+    pied: "En rosenkrans = fem dekader. Den fulde rosenkrans = de tyve mysterier. — <i>Ad Iesum per Mariam.</i>",
+  },
+};
+
+// Langue : ?lang=xx (lien depuis l'app) > langue mémorisée de l'app > français (page statique)
+let langue = new URLSearchParams(location.search).get("lang");
+if (!langue) {
+  try { langue = localStorage.getItem("rosaire-langue"); } catch (e) {}
+}
+if (langue && langue !== "fr" && T[langue]) {
+  const t = T[langue];
+  const el = (id) => document.getElementById(id);
+  document.documentElement.lang = langue;
+  document.title = t.docTitle;
+  el("btn-imprimer").textContent = t.imprimer;
+  el("titre-page").innerHTML = t.titre;
+  el("sous-titre").textContent = t.sousTitre;
+  el("svg-sens").textContent = t.sens;
+  el("legende-grosse").textContent = t.legG;
+  el("legende-petite").textContent = t.legP;
+  t.etapes.forEach((e, i) => {
+    el(`e${i + 1}h`).textContent = e.h;
+    el(`e${i + 1}p`).innerHTML = e.p;
+    if (e.pr) el(`e${i + 1}pr`).textContent = e.pr;
+  });
+  el("repeter").innerHTML = t.repeter;
+  el("e8h").textContent = t.e8h;
+  el("e8p").innerHTML = t.e8p;
+  el("prieres-titre").textContent = t.prieresTitre;
+  [["notrepere", t.np], ["gloria", t.gl], ["ave", t.av], ["salve", t.sa]].forEach(([cle, [nom, texte]]) => {
+    el("t-" + cle).textContent = nom;
+    el("x-" + cle).textContent = texte;
+  });
+  el("t-table").textContent = t.tableTitre;
+  ["th-jour", "th-serie", "th-myst"].forEach((id, i) => { el(id).textContent = t.ths[i]; });
+  for (let i = 0; i < 4; i++) {
+    el("d" + (i + 1)).textContent = t.jours[i];
+    el("s" + (i + 1)).textContent = t.series[i];
+    el("l" + (i + 1)).textContent = t.listes[i];
+  }
+  el("conseil").textContent = t.conseil;
+  el("pied").innerHTML = t.pied;
+}
+</script>
+</body>
+</html>

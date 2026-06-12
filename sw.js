@@ -16,13 +16,14 @@
    se rafraîchissent seuls).
    ============================================================ */
 
-const VERSION = "rosaire-v1";
+const VERSION = "rosaire-v2";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 
 const PRECACHE_URLS = [
   "./",
   "./index.html",
+  "./tuto-chapelet-imprimable.html",
   "./css/styles.css",
   "./js/scripts.js",
   "./manifest.json",
