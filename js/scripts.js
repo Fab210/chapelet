@@ -396,8 +396,19 @@ const imagesMysteres = {
   ],
 };
 
+// --- MYSTÈRES DU JOUR (calendrier traditionnel) ---
+// dimanche: glorieux, lundi: joyeux, mardi: douloureux, mercredi: glorieux,
+// jeudi: lumineux, vendredi: douloureux, samedi: joyeux
+const MYSTERES_DU_JOUR = [
+  "glorieux", "joyeux", "douloureux", "glorieux", "lumineux", "douloureux", "joyeux",
+];
+
+function mystereDuJour() {
+  return MYSTERES_DU_JOUR[new Date().getDay()];
+}
+
 // --- VARIABLES GLOBALES ---
-let typeMystere = "joyeux";
+let typeMystere = mystereDuJour();
 let prières = [];
 let sousTextes = {};
 let currentIndex = -1;
@@ -1293,7 +1304,7 @@ const musique = {
 // --- INIT ---
 generatePerles();
 appliquerLangue("pt");
-changerMystere("joyeux");
+changerMystere(mystereDuJour()); // pré-sélection des mystères du jour
 
 document.getElementById("avance").addEventListener("click", () => avancePriere());
 document.getElementById("recule").addEventListener("click", reculePriere);
