@@ -550,6 +550,9 @@ function appliquerLangue(code) {
 function changerLangue(code) {
   if (code === langueActuelle) return;
   appliquerLangue(code);
+  // Mémoriser le choix entre les sessions (échec silencieux : navigation
+  // privée Safari ou stockage indisponible)
+  try { localStorage.setItem("rosaire-langue", code); } catch (e) {}
   changerMystere(typeMystere);
 }
 
@@ -1303,7 +1306,13 @@ const musique = {
 // ============================================================
 // --- INIT ---
 generatePerles();
-appliquerLangue("pt");
+// Langue mémorisée lors d'une session précédente (repli : portugais)
+let langueInitiale = "pt";
+try {
+  const langueSauvee = localStorage.getItem("rosaire-langue");
+  if (langueSauvee && traductions[langueSauvee]) langueInitiale = langueSauvee;
+} catch (e) {}
+appliquerLangue(langueInitiale);
 changerMystere(mystereDuJour()); // pré-sélection des mystères du jour
 
 document.getElementById("avance").addEventListener("click", () => avancePriere());
