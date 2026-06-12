@@ -68,9 +68,12 @@ footer{margin-top:36px;padding-top:14px;border-top:3px double var(--gold);text-a
 .printbtn{position:fixed;right:18px;bottom:18px;background:var(--rubric);color:#fff;border:none;border-radius:99px;padding:10px 20px;font-family:'EB Garamond',serif;font-size:15px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25)}
 .printbtn:hover{background:#7c1414}
 
+.backbtn{position:fixed;left:18px;bottom:18px;background:var(--card);color:var(--rubric);border:1.5px solid var(--rubric);border-radius:99px;padding:9px 18px;font-family:'EB Garamond',serif;font-size:15px;text-decoration:none;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.backbtn:hover{background:var(--rubric-pale)}
+
 @media print{
   body{background:#fff;font-size:11.5px}
-  .printbtn{display:none}
+  .printbtn,.backbtn{display:none}
   header{padding-top:10px}
   .page{padding-bottom:10px}
   .tuto{break-inside:avoid}
@@ -81,6 +84,7 @@ footer{margin-top:36px;padding-top:14px;border-top:3px double var(--gold);text-a
 </head>
 <body>
 <button class="printbtn" id="btn-imprimer" onclick="window.print()">🖨 Imprimer</button>
+<a class="backbtn" id="btn-retour" href="index.html">← Retour au chapelet</a>
 
 <header>
   <div class="cross">☩</div>
@@ -277,6 +281,7 @@ const T = {
   pt: {
     docTitle: "Como rezar o terço — tutorial imprimível",
     imprimer: "🖨 Imprimir",
+    retour: "← Voltar ao terço",
     titre: "Como rezar <em>o terço</em>",
     sousTitre: "Tutorial passo a passo, com o esquema do terço — cerca de 20 minutos de oração",
     sens: "sentido da oração →",
@@ -315,6 +320,7 @@ const T = {
   en: {
     docTitle: "How to pray the Rosary — printable tutorial",
     imprimer: "🖨 Print",
+    retour: "← Back to the Rosary",
     titre: "How to pray <em>the Rosary</em>",
     sousTitre: "Step-by-step tutorial with the rosary diagram — about 20 minutes of prayer",
     sens: "prayer direction →",
@@ -353,6 +359,7 @@ const T = {
   de: {
     docTitle: "Wie man den Rosenkranz betet — druckbare Anleitung",
     imprimer: "🖨 Drucken",
+    retour: "← Zurück zum Rosenkranz",
     titre: "Wie man <em>den Rosenkranz</em> betet",
     sousTitre: "Schritt-für-Schritt-Anleitung mit Rosenkranz-Schema — etwa 20 Minuten Gebet",
     sens: "Gebetsrichtung →",
@@ -391,6 +398,7 @@ const T = {
   lb: {
     docTitle: "Wéi ee de Rousekranz biet — Uleedung fir ze drécken",
     imprimer: "🖨 Drécken",
+    retour: "← Zréck bei de Rousekranz",
     titre: "Wéi ee <em>de Rousekranz</em> biet",
     sousTitre: "Schrëtt-fir-Schrëtt-Uleedung mam Schema vum Rousekranz — ongeféier 20 Minutte Gebiet",
     sens: "Gebietsriichtung →",
@@ -429,6 +437,7 @@ const T = {
   nl: {
     docTitle: "Hoe je de rozenkrans bidt — afdrukbare uitleg",
     imprimer: "🖨 Afdrukken",
+    retour: "← Terug naar de rozenkrans",
     titre: "Hoe je <em>de rozenkrans</em> bidt",
     sousTitre: "Stap-voor-stap-uitleg met het schema van de rozenkrans — ongeveer 20 minuten gebed",
     sens: "bidrichting →",
@@ -467,6 +476,7 @@ const T = {
   da: {
     docTitle: "Sådan beder man rosenkransen — vejledning til udskrift",
     imprimer: "🖨 Udskriv",
+    retour: "← Tilbage til rosenkransen",
     titre: "Sådan beder man <em>rosenkransen</em>",
     sousTitre: "Trin-for-trin-vejledning med diagram over rosenkransen — cirka 20 minutters bøn",
     sens: "bederetning →",
@@ -515,6 +525,7 @@ if (langue && langue !== "fr" && T[langue]) {
   document.documentElement.lang = langue;
   document.title = t.docTitle;
   el("btn-imprimer").textContent = t.imprimer;
+  el("btn-retour").textContent = t.retour;
   el("titre-page").innerHTML = t.titre;
   el("sous-titre").textContent = t.sousTitre;
   el("svg-sens").textContent = t.sens;

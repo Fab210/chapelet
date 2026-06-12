@@ -1608,10 +1608,14 @@ body.mode-cathedrale #lien-tuto {
     bottom: auto;
     top: 28px;
   }
-  /* Lien tutoriel empilé sous la pastille Crédits */
+  /* Lien tutoriel : icône seule, à côté de la pastille Crédits — le texte
+     encombrerait la bande du haut, le chapelet doit rester le centre. */
   #lien-tuto {
     bottom: auto;
-    top: 80px;
-    left: 8px;
+    top: 52px;
+    left: 80px;
+  }
+  #lien-tuto-texte {
+    display: none;
   }
 }

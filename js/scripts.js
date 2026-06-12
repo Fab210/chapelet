@@ -533,7 +533,10 @@ function appliquerLangue(code) {
   // Lien vers le tutoriel imprimable, dans la langue courante
   const lienTuto = document.getElementById("lien-tuto");
   if (lienTuto) {
-    lienTuto.textContent = `✛ ${ui.tuto}`;
+    const lienTutoTexte = document.getElementById("lien-tuto-texte");
+    if (lienTutoTexte) lienTutoTexte.textContent = ` ${ui.tuto}`;
+    lienTuto.title = ui.tuto;
+    lienTuto.setAttribute("aria-label", ui.tuto);
     lienTuto.href = `tuto-chapelet-imprimable.html?lang=${code}`;
   }
 
