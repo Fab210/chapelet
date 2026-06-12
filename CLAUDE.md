@@ -17,6 +17,8 @@ python -m http.server 8000
 npx http-server
 ```
 
+**Service worker caveat (Windows)**: `python -m http.server` may serve `.js` as `text/plain` (it reads MIME types from the registry), which browsers tolerate for `<script>` but **reject for service worker registration**. To test the PWA/offline behaviour locally, use `npx http-server` instead. `file://` never registers service workers.
+
 No lint, test framework, or build commands exist in this project.
 
 ## Architecture
@@ -28,6 +30,8 @@ No lint, test framework, or build commands exist in this project.
 - `css/styles.css` — All CSS (~711 lines)
 - `img/` — Mystery images; some referenced in code may be missing
 - `rosaire.html` — Placeholder secondary page
+- `sw.js` + `manifest.json` — PWA: offline service worker (precaches shell + the 21 used images; audio is cached on first play with Range/206 support for iOS). **Bump `VERSION` in `sw.js` whenever files under `img/` or `vendor/` change** — HTML/CSS/JS are network-first and refresh on their own.
+- `vendor/` — Self-hosted Bootstrap 5.3.7 and Google Fonts (latin + latin-ext woff2), required for offline use. Do not reintroduce CDN links in `index.html`.
 
 ### Responsive Layout Strategy
 

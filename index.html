@@ -8,10 +8,24 @@
   <meta name="keywords" content="rosaire, fatima, jesus christ" />
   <meta name="author" content="Fab" />
   <title>Chapelet Interactif</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Great+Vibes&family=Merriweather:wght@400;700&display=swap"
-    rel="stylesheet">
+  <!-- PWA : installable et utilisable hors-ligne (voir sw.js).
+       Le manifest n'est référencé qu'en http(s) : en file:// le navigateur
+       le refuse (CORS) et pollue la console. -->
+  <script>
+    if (location.protocol !== "file:") {
+      var lienManifest = document.createElement("link");
+      lienManifest.rel = "manifest";
+      lienManifest.href = "manifest.json";
+      document.head.appendChild(lienManifest);
+    }
+  </script>
+  <meta name="theme-color" content="#f3e7cf" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="img/icon-192.png" />
+  <!-- Bootstrap et polices auto-hébergés (vendor/) pour le hors-ligne -->
+  <link href="vendor/bootstrap.min.css" rel="stylesheet" />
+  <link href="vendor/fonts.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
@@ -152,14 +166,21 @@
 
   <audio id="audio-gregorien" preload="none"></audio>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
+  <script src="vendor/bootstrap.bundle.min.js"></script>
   <script src="js/scripts.js"></script>
+
+  <!-- Service worker : précache du shell + cache audio à la lecture -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
 
   <!-- GoatCounter — statistiques de visites (sans cookie, conforme RGPD).
        Tableau de bord : https://rosaire.goatcounter.com/ -->
   <script data-goatcounter="https://rosaire.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+          async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
